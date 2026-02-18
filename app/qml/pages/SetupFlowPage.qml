@@ -1,0 +1,89 @@
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import FitnessApp 1.0
+
+/**
+ * Setup flow container: guest mode (4 steps) or login mode (8 steps).
+ * Guest: Intro → Gender → Age → Weight → HomePage
+ * Login: (optional skip) Intro → Gender → Age → Weight → Height → Goal → Activity → Profile → HomePage
+ */
+Page {
+    id: root
+    property Item stackView
+    property bool isGuestMode: true
+    property int startStep: 0
+
+    readonly property int guestStepCount: 4
+    readonly property int loginStepCount: 8
+    readonly property int totalSteps: isGuestMode ? guestStepCount : loginStepCount
+    property int currentStep: 0
+
+    background: Rectangle { color: StyleConstants.backgroundSecondary }
+
+    function goBack() {
+        if (currentStep <= 0) {
+            stackView.pop()
+            stackView.pop()
+        } else {
+            currentStep = currentStep - 1
+            stackView.pop()
+        }
+    }
+
+    function goNext() {
+        if (currentStep + 1 >= totalSteps) {
+            finishSetup()
+            return
+        }
+        currentStep = currentStep + 1
+        var component = stepComponent(currentStep)
+        if (component) {
+            var props = {
+                stackView: stackView,
+                flowPage: root,
+                stepIndex: currentStep,
+                totalSteps: totalSteps,
+                isGuestMode: root.isGuestMode
+            }
+            stackView.push(component, props)
+        }
+    }
+
+    function stepComponent(stepIndex) {
+        var steps = [
+            "qrc:/FitnessApp/qml/pages/SetupIntroPage.qml",
+            "qrc:/FitnessApp/qml/pages/SetupGenderPage.qml",
+            "qrc:/FitnessApp/qml/pages/SetupAgePage.qml",
+            "qrc:/FitnessApp/qml/pages/SetupWeightPage.qml",
+            "qrc:/FitnessApp/qml/pages/SetupHeightPage.qml",
+            "qrc:/FitnessApp/qml/pages/SetupGoalPage.qml",
+            "qrc:/FitnessApp/qml/pages/SetupActivityPage.qml",
+            "qrc:/FitnessApp/qml/pages/SetupProfilePage.qml"
+        ]
+        return stepIndex >= 0 && stepIndex < steps.length ? steps[stepIndex] : null
+    }
+
+    function finishSetup() {
+        if (!storageService.hasBasicInfo && storageService.userHeightCm <= 0) {
+            storageService.userHeightCm = 170
+        }
+        stackView.replace("qrc:/FitnessApp/qml/pages/HomePage.qml", { stackView: stackView })
+    }
+
+    Component.onCompleted: {
+        currentStep = startStep
+        var comp = stepComponent(startStep)
+        if (comp) {
+            var props = {
+                stackView: stackView,
+                flowPage: root,
+                stepIndex: startStep,
+                totalSteps: totalSteps,
+                isGuestMode: root.isGuestMode
+            }
+            stackView.push(comp, props)
+        }
+    }
+
+}
