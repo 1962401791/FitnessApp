@@ -112,11 +112,12 @@ Page {
             Item {
                 id: heightPicker
                 Layout.fillWidth: true
-                Layout.preferredHeight: 280
+                Layout.preferredHeight: Math.min(320, Math.max(220, root.height * 0.34))
                 Layout.bottomMargin: 16
                 property int minValue: 100
                 property int maxValue: 250
-                property int itemHeight: 18
+                property int visibleTicks: 13
+                property int itemHeight: Math.max(12, Math.min(26, Math.floor(heightScale.height / visibleTicks)))
                 property bool syncFromList: false
                 readonly property int count: maxValue - minValue + 1
 
