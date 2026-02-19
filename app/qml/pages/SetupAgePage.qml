@@ -60,7 +60,9 @@ Page {
                 Layout.preferredHeight: 120
                 property int minAge: 10
                 property int maxAge: 120
-                property int itemWidth: 64
+                property int trackWidth: Math.min(280, Math.max(200, Math.floor(parent.width * 0.62)))
+                property int trackHeight: 56
+                property int itemWidth: Math.floor(trackWidth / 3)
                 property bool syncFromList: false
 
                 function updateFromList(index) {
@@ -81,20 +83,20 @@ Page {
                 Rectangle {
                     id: ageTrack
                     anchors.horizontalCenter: parent.horizontalCenter
-                    y: 40
-                    width: parent.width - 32
-                    height: 52
-                    radius: 26
+                    y: 44
+                    width: agePicker.trackWidth
+                    height: agePicker.trackHeight
+                    radius: height / 2
                     color: StyleConstants.primary
                     opacity: 0.8
                 }
 
                 Canvas {
                     id: ageArrow
-                    width: 16
+                    width: 14
                     height: 10
                     anchors.horizontalCenter: parent.horizontalCenter
-                    y: 22
+                    y: ageTrack.y - height - 6
                     onPaint: {
                         var ctx = getContext("2d")
                         ctx.clearRect(0, 0, width, height)
@@ -111,7 +113,7 @@ Page {
                 ListView {
                     id: ageList
                     anchors.fill: ageTrack
-                    anchors.margins: 8
+                    anchors.margins: 0
                     orientation: ListView.Horizontal
                     spacing: 0
                     clip: true
@@ -129,7 +131,7 @@ Page {
 
                         Label {
                             anchors.fill: parent
-                            y: -2
+                            y: -1
                             text: value
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
@@ -141,7 +143,7 @@ Page {
                             lineHeightMode: Text.FixedHeight
                             font.pixelSize: value === root.selectedAge ? 20 : 16
                             font.bold: value === root.selectedAge
-                            color: value === root.selectedAge ? "#FFFFFF" : "#3A3A3A"
+                            color: value === root.selectedAge ? "#FFFFFF" : "#2D2D2D"
                         }
                     }
 
@@ -150,24 +152,13 @@ Page {
 
                 Rectangle {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    y: ageTrack.y
                     width: 2
-                    height: ageTrack.height
+                    height: ageTrack.height - 16
                     radius: 1
                     color: "#FFFFFF"
-                    opacity: 0.6
-                    x: ageTrack.x + ageTrack.width / 2 - agePicker.itemWidth / 2 - width / 2
-                }
-
-                Rectangle {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    y: ageTrack.y
-                    width: 2
-                    height: ageTrack.height
-                    radius: 1
-                    color: "#FFFFFF"
-                    opacity: 0.6
-                    x: ageTrack.x + ageTrack.width / 2 + agePicker.itemWidth / 2 - width / 2
+                    opacity: 0.7
+                    x: ageTrack.x + (ageTrack.width - width) / 2
+                    y: ageTrack.y + 8
                 }
 
                 Connections {
