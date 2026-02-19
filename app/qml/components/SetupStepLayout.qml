@@ -13,7 +13,7 @@ Item {
     property string stepTitle: ""
     property string stepSubtitle: ""
     property bool showBackButton: true
-    property string buttonText: "Continue"
+    property string buttonText: qsTr("Continue")
     property int progressStep: 0
     property int progressTotal: 4
     property bool canProceed: true

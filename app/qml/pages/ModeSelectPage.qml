@@ -30,7 +30,7 @@ Page {
         }
 
         Label {
-            text: "HSport"
+            text: qsTr("HSport")
             font.pixelSize: StyleConstants.fontSizeDisplay
             font.bold: true
             color: StyleConstants.textPrimary
@@ -38,7 +38,7 @@ Page {
         }
 
         Label {
-            text: "选择使用模式"
+            text: qsTr("选择使用模式")
             font.pixelSize: StyleConstants.fontSizeBody
             color: StyleConstants.textMuted
             Layout.alignment: Qt.AlignHCenter
@@ -48,7 +48,7 @@ Page {
 
         Button {
             id: guestBtn
-            text: "游客模式"
+            text: qsTr("游客模式")
             Layout.fillWidth: true
             Layout.preferredHeight: StyleConstants.buttonHeight
             font.pixelSize: StyleConstants.fontSizeBody
@@ -77,7 +77,7 @@ Page {
 
         Button {
             id: loginBtn
-            text: "登录模式"
+            text: qsTr("登录模式")
             Layout.fillWidth: true
             Layout.preferredHeight: StyleConstants.buttonHeight
             font.pixelSize: StyleConstants.fontSizeBody
@@ -97,7 +97,7 @@ Page {
         }
 
         Label {
-            text: "Beta 版本暂未开放"
+            text: qsTr("Beta 版本暂未开放")
             font.pixelSize: StyleConstants.fontSizeXs
             color: StyleConstants.textMuted
             Layout.alignment: Qt.AlignHCenter

@@ -4,6 +4,8 @@
 #include <QIcon>
 #include <QString>
 #include <QQuickStyle>
+#include <QLocale>
+#include <QTranslator>
 #include "core/NutritionCalculator.h"
 #include "models/FoodItem.h"
 #include "models/DailyLogEntry.h"
@@ -19,6 +21,18 @@ int main(int argc, char *argv[])
     QQuickStyle::setStyle("Basic");
     app.setApplicationName("HSport");
     app.setApplicationVersion("1.0.0");
+
+    {
+        const QString localeName = QLocale::system().name();
+        QTranslator *translator = new QTranslator(&app);
+        const QStringList candidates = { localeName, localeName.left(2) };
+        for (const QString &candidate : candidates) {
+            if (translator->load(QStringLiteral(":/i18n/hsport_%1.qm").arg(candidate))) {
+                app.installTranslator(translator);
+                break;
+            }
+        }
+    }
 
     StorageService storage;
     if (!storage.init()) {

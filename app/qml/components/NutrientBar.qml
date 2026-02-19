@@ -25,7 +25,9 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
         }
         Label {
-            text: root.value.toFixed(0) + " / " + root.goal.toFixed(0) + " g"
+            text: qsTr("%1 / %2 g")
+                .arg(root.value.toFixed(0))
+                .arg(root.goal.toFixed(0))
             font.pixelSize: StyleConstants.fontSizeSmall
             anchors.verticalCenter: parent.verticalCenter
         }

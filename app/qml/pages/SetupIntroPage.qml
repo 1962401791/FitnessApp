@@ -19,10 +19,10 @@ Page {
     SetupStepLayout {
         anchors.fill: parent
         anchors.margins: 20
-        stepTitle: "Set Up"
+        stepTitle: qsTr("Set Up")
         stepSubtitle: ""
         showBackButton: false
-        buttonText: "Next"
+        buttonText: qsTr("Next")
         progressStep: stepIndex
         progressTotal: totalSteps
         canProceed: true
@@ -47,7 +47,7 @@ Page {
             }
 
             Label {
-                text: "Consistency Is The Key To Progress. Don't Give Up!"
+                text: qsTr("Consistency Is The Key To Progress. Don't Give Up!")
                 font.pixelSize: 18
                 font.bold: true
                 color: StyleConstants.accent
@@ -57,7 +57,7 @@ Page {
             }
 
             Label {
-                text: "Track your workouts, set goals, and build habits that last. Every small step counts."
+                text: qsTr("Track your workouts, set goals, and build habits that last. Every small step counts.")
                 font.pixelSize: 13
                 color: StyleConstants.textMuted
                 horizontalAlignment: Text.AlignHCenter

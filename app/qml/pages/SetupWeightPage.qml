@@ -28,10 +28,10 @@ Page {
     SetupStepLayout {
         anchors.fill: parent
         anchors.margins: 20
-        stepTitle: "What Is Your Weight?"
-        stepSubtitle: "We use this to calculate your calorie and macro goals."
+        stepTitle: qsTr("What Is Your Weight?")
+        stepSubtitle: qsTr("We use this to calculate your calorie and macro goals.")
         showBackButton: true
-        buttonText: "Continue"
+        buttonText: qsTr("Continue")
         progressStep: stepIndex
         progressTotal: totalSteps
         canProceed: true
@@ -57,7 +57,7 @@ Page {
                     color: root.useKg ? StyleConstants.accent : StyleConstants.surfaceGray
                     Label {
                         anchors.centerIn: parent
-                        text: "KG"
+                        text: qsTr("KG")
                         font.pixelSize: 14
                         color: root.useKg ? StyleConstants.background : StyleConstants.textMuted
                     }
@@ -73,7 +73,7 @@ Page {
                     color: !root.useKg ? StyleConstants.accent : StyleConstants.surfaceGray
                     Label {
                         anchors.centerIn: parent
-                        text: "LB"
+                        text: qsTr("LB")
                         font.pixelSize: 14
                         color: !root.useKg ? StyleConstants.background : StyleConstants.textMuted
                     }
@@ -86,8 +86,8 @@ Page {
 
             Label {
                 text: root.useKg
-                    ? (root.selectedWeightKg.toFixed(0) + " kg")
-                    : (Math.round(root.selectedWeightKg * 2.205).toString() + " lb")
+                    ? qsTr("%1 kg").arg(root.selectedWeightKg.toFixed(0))
+                    : qsTr("%1 lb").arg(Math.round(root.selectedWeightKg * 2.205).toString())
                 font.pixelSize: 36
                 font.bold: true
                 color: StyleConstants.textPrimary

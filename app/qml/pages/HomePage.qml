@@ -5,7 +5,7 @@ import FitnessApp 1.0
 
 Page {
     id: root
-    title: "首页"
+    title: qsTr("首页")
     property Item stackView
     background: Rectangle { color: StyleConstants.background }
 
@@ -24,7 +24,7 @@ Page {
                 fillMode: Image.PreserveAspectFit
             }
             Label {
-                text: "今日概览"
+                text: qsTr("今日概览")
                 font.pixelSize: StyleConstants.fontSizeHeader
                 font.bold: true
                 color: StyleConstants.textPrimary
@@ -47,7 +47,7 @@ Page {
                     Layout.alignment: Qt.AlignHCenter
                 }
                 Label {
-                    text: "今日摄入"
+                    text: qsTr("今日摄入")
                     font.pixelSize: StyleConstants.fontSizeSmall
                     color: StyleConstants.primaryLight
                     Layout.alignment: Qt.AlignHCenter
@@ -62,29 +62,29 @@ Page {
             columnSpacing: StyleConstants.spacingSmall
 
             CardButton {
-                title: "饮食记录"
-                subtitle: "记录三餐与加餐"
+                title: qsTr("饮食记录")
+                subtitle: qsTr("记录三餐与加餐")
                 icon: "📋"
                 Layout.fillWidth: true
                 onClicked: stackView.push("qrc:/FitnessApp/qml/pages/DietLogPage.qml", { stackView: stackView })
             }
             CardButton {
-                title: "运动记录"
-                subtitle: "添加运动消耗"
+                title: qsTr("运动记录")
+                subtitle: qsTr("添加运动消耗")
                 icon: "🏃"
                 Layout.fillWidth: true
                 onClicked: stackView.push("qrc:/FitnessApp/qml/pages/ExerciseLogPage.qml", { stackView: stackView })
             }
             CardButton {
-                title: "每日总结"
-                subtitle: "摄入与目标对比"
+                title: qsTr("每日总结")
+                subtitle: qsTr("摄入与目标对比")
                 icon: "📊"
                 Layout.fillWidth: true
                 onClicked: stackView.push("qrc:/FitnessApp/qml/pages/DailySummaryPage.qml", { stackView: stackView })
             }
             CardButton {
-                title: "设置"
-                subtitle: "目标与基础信息"
+                title: qsTr("设置")
+                subtitle: qsTr("目标与基础信息")
                 icon: "⚙"
                 Layout.fillWidth: true
                 onClicked: stackView.push("qrc:/FitnessApp/qml/pages/SettingsPage.qml", { stackView: stackView })

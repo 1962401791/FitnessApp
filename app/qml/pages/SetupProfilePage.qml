@@ -20,10 +20,10 @@ Page {
     SetupStepLayout {
         anchors.fill: parent
         anchors.margins: 20
-        stepTitle: "Fill Your Profile"
-        stepSubtitle: "Add your details to personalize your experience."
+        stepTitle: qsTr("Fill Your Profile")
+        stepSubtitle: qsTr("Add your details to personalize your experience.")
         showBackButton: true
-        buttonText: "Start"
+        buttonText: qsTr("Start")
         progressStep: stepIndex
         progressTotal: totalSteps
         canProceed: true
@@ -60,7 +60,7 @@ Page {
             TextField {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 48
-                placeholderText: "Full Name"
+                placeholderText: qsTr("Full Name")
                 font.pixelSize: 14
                 color: StyleConstants.textPrimary
                 background: Rectangle {
@@ -72,7 +72,7 @@ Page {
             TextField {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 48
-                placeholderText: "Username"
+                placeholderText: qsTr("Username")
                 font.pixelSize: 14
                 color: StyleConstants.textPrimary
                 background: Rectangle {
@@ -84,7 +84,7 @@ Page {
             TextField {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 48
-                placeholderText: "Email"
+                placeholderText: qsTr("Email")
                 font.pixelSize: 14
                 color: StyleConstants.textPrimary
                 inputMethodHints: Qt.ImhEmailCharactersOnly
@@ -97,7 +97,7 @@ Page {
             TextField {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 48
-                placeholderText: "Password"
+                placeholderText: qsTr("Password")
                 font.pixelSize: 14
                 color: StyleConstants.textPrimary
                 echoMode: TextInput.Password
@@ -110,7 +110,7 @@ Page {
             TextField {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 48
-                placeholderText: "Confirm Password"
+                placeholderText: qsTr("Confirm Password")
                 font.pixelSize: 14
                 color: StyleConstants.textPrimary
                 echoMode: TextInput.Password

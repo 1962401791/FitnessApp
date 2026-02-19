@@ -5,7 +5,7 @@ import FitnessApp 1.0
 
 Page {
     id: root
-    title: "饮食记录"
+    title: qsTr("饮食记录")
     property Item stackView
     background: Rectangle { color: StyleConstants.background }
 
@@ -22,12 +22,12 @@ Page {
                 onClicked: stackView.pop()
             }
             Label {
-                text: "今日饮食"
+                text: qsTr("今日饮食")
                 font.pixelSize: StyleConstants.fontSizeTitle
                 Layout.fillWidth: true
             }
             Button {
-                text: "添加"
+                text: qsTr("添加")
                 flat: true
                 font.bold: true
                 onClicked: stackView.push("qrc:/FitnessApp/qml/pages/AddFoodPage.qml", { stackView: stackView })
@@ -43,7 +43,11 @@ Page {
                 anchors.fill: parent
                 anchors.margins: StyleConstants.spacingSmall
                 Label {
-                    text: "P " + storageService.dailyLogModel.totalProteinG.toFixed(0) + "  C " + storageService.dailyLogModel.totalCarbsG.toFixed(0) + "  F " + storageService.dailyLogModel.totalFatG.toFixed(0) + "  " + storageService.dailyLogModel.totalKcal.toFixed(0) + " kcal"
+                    text: qsTr("P %1  C %2  F %3  %4 kcal")
+                        .arg(storageService.dailyLogModel.totalProteinG.toFixed(0))
+                        .arg(storageService.dailyLogModel.totalCarbsG.toFixed(0))
+                        .arg(storageService.dailyLogModel.totalFatG.toFixed(0))
+                        .arg(storageService.dailyLogModel.totalKcal.toFixed(0))
                     font.pixelSize: StyleConstants.fontSizeSmall
                     color: StyleConstants.textPrimary
                 }

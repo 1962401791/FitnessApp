@@ -23,13 +23,16 @@ Rectangle {
         spacing: StyleConstants.spacingMedium
         Label {
             Layout.fillWidth: true
-            text: root.foodName + " " + root.amountG.toFixed(0) + "g"
+            text: qsTr("%1 %2g").arg(root.foodName).arg(root.amountG.toFixed(0))
             font.pixelSize: StyleConstants.fontSizeBody
             elide: Text.ElideRight
             color: StyleConstants.textPrimary
         }
         Label {
-            text: "P" + root.proteinG.toFixed(0) + " C" + root.carbsG.toFixed(0) + " F" + root.fatG.toFixed(0)
+            text: qsTr("P%1 C%2 F%3")
+                .arg(root.proteinG.toFixed(0))
+                .arg(root.carbsG.toFixed(0))
+                .arg(root.fatG.toFixed(0))
             font.pixelSize: StyleConstants.fontSizeXs
             color: StyleConstants.textMuted
         }

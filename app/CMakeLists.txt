@@ -4,7 +4,7 @@ project(FitnessApp VERSION 1.0.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Qml Quick QuickControls2 Sql Svg)
+find_package(Qt6 REQUIRED COMPONENTS Core Qml Quick QuickControls2 Sql Svg LinguistTools)
 qt_standard_project_setup(REQUIRES 6.5)
 qt_policy(SET QTP0004 NEW)
 
@@ -90,6 +90,23 @@ qt_add_qml_module(FitnessApp
         qml/components/SetupStepLayout.qml
         qml/components/FoodEntryRow.qml
         qml/components/CardButton.qml
+)
+
+qt_add_translations(FitnessApp
+    TS_FILES
+        i18n/hsport_en.ts
+        i18n/hsport_zh_CN.ts
+    QM_FILES_OUTPUT_VARIABLE qm_files
+)
+
+foreach(qm_file IN LISTS qm_files)
+    get_filename_component(qm_name "${qm_file}" NAME)
+    set_source_files_properties("${qm_file}" PROPERTIES QT_RESOURCE_ALIAS "${qm_name}")
+endforeach()
+
+qt_add_resources(FitnessApp "i18n"
+    PREFIX "/i18n"
+    FILES ${qm_files}
 )
 
 target_link_libraries(FitnessApp PRIVATE

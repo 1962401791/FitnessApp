@@ -8,7 +8,7 @@ import FitnessApp 1.0
  */
 Page {
     id: root
-    title: "基础信息"
+    title: qsTr("基础信息")
     property Item stackView
     property bool isEditMode: false
     background: Rectangle { color: StyleConstants.background }
@@ -19,13 +19,13 @@ Page {
         spacing: StyleConstants.spacingMedium
 
         Label {
-            text: "完善基础信息"
+            text: qsTr("完善基础信息")
             font.pixelSize: StyleConstants.fontSizeHeader
             font.bold: true
             color: StyleConstants.textPrimary
         }
         Label {
-            text: "用于计算基础代谢率（BMR）及运动消耗"
+            text: qsTr("用于计算基础代谢率（BMR）及运动消耗")
             font.pixelSize: StyleConstants.fontSizeSmall
             color: StyleConstants.textMuted
         }
@@ -34,7 +34,7 @@ Page {
 
         RowLayout {
             Layout.fillWidth: true
-            Label { text: "年龄 (岁) *"; Layout.preferredWidth: 90 }
+            Label { text: qsTr("年龄 (岁) *"); Layout.preferredWidth: 90 }
             SpinBox {
                 id: ageSpin
                 from: 10
@@ -47,7 +47,7 @@ Page {
         }
         RowLayout {
             Layout.fillWidth: true
-            Label { text: "身高 (cm) *"; Layout.preferredWidth: 90 }
+            Label { text: qsTr("身高 (cm) *"); Layout.preferredWidth: 90 }
             SpinBox {
                 id: heightSpin
                 from: 100
@@ -60,7 +60,7 @@ Page {
         }
         RowLayout {
             Layout.fillWidth: true
-            Label { text: "体重 (kg)"; Layout.preferredWidth: 90 }
+            Label { text: qsTr("体重 (kg)"); Layout.preferredWidth: 90 }
             SpinBox {
                 id: weightSpin
                 from: 30
@@ -73,11 +73,11 @@ Page {
         }
         RowLayout {
             Layout.fillWidth: true
-            Label { text: "性别"; Layout.preferredWidth: 90 }
+            Label { text: qsTr("性别"); Layout.preferredWidth: 90 }
             Row {
                 spacing: StyleConstants.spacingSmall
                 Button {
-                    text: "男"
+                    text: qsTr("男")
                     checked: storageService.userIsMale
                     checkable: true
                     onClicked: storageService.userIsMale = true
@@ -87,7 +87,7 @@ Page {
                     }
                 }
                 Button {
-                    text: "女"
+                    text: qsTr("女")
                     checked: !storageService.userIsMale
                     checkable: true
                     onClicked: storageService.userIsMale = false
@@ -102,7 +102,7 @@ Page {
         Item { Layout.fillHeight: true }
 
         Button {
-            text: "开始使用"
+            text: qsTr("开始使用")
             Layout.fillWidth: true
             Layout.preferredHeight: StyleConstants.buttonHeight
             font.pixelSize: StyleConstants.fontSizeBody

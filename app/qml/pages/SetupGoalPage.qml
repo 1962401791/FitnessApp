@@ -15,11 +15,11 @@ Page {
     property bool isGuestMode: false
 
     readonly property var goalLabels: [
-        "Lose Weight",
-        "Gain Weight",
-        "Muscle Mass Gain",
-        "Improve Body",
-        "Other"
+        qsTr("Lose Weight"),
+        qsTr("Gain Weight"),
+        qsTr("Muscle Mass Gain"),
+        qsTr("Improve Body"),
+        qsTr("Other")
     ]
     property int selectedGoal: storageService.userGoal
 
@@ -28,10 +28,10 @@ Page {
     SetupStepLayout {
         anchors.fill: parent
         anchors.margins: 20
-        stepTitle: "What Is Your Goal?"
-        stepSubtitle: "Choose the goal that best fits your fitness journey."
+        stepTitle: qsTr("What Is Your Goal?")
+        stepSubtitle: qsTr("Choose the goal that best fits your fitness journey.")
         showBackButton: true
-        buttonText: "Continue"
+        buttonText: qsTr("Continue")
         progressStep: stepIndex
         progressTotal: totalSteps
         canProceed: true

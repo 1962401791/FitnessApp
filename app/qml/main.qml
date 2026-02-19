@@ -8,7 +8,7 @@ ApplicationWindow {
     visible: true
     width: 390
     height: 680
-    title: "HSport"
+    title: qsTr("HSport")
     color: StyleConstants.background
 
     StackView {

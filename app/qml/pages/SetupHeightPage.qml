@@ -28,10 +28,10 @@ Page {
     SetupStepLayout {
         anchors.fill: parent
         anchors.margins: 20
-        stepTitle: "What Is Your Height?"
-        stepSubtitle: "Used to calculate BMI and daily calorie needs."
+        stepTitle: qsTr("What Is Your Height?")
+        stepSubtitle: qsTr("Used to calculate BMI and daily calorie needs.")
         showBackButton: true
-        buttonText: "Continue"
+        buttonText: qsTr("Continue")
         progressStep: stepIndex
         progressTotal: totalSteps
         canProceed: true
@@ -57,7 +57,7 @@ Page {
                     color: root.useCm ? StyleConstants.accent : StyleConstants.surfaceGray
                     Label {
                         anchors.centerIn: parent
-                        text: "CM"
+                        text: qsTr("CM")
                         font.pixelSize: 14
                         color: root.useCm ? StyleConstants.background : StyleConstants.textMuted
                     }
@@ -73,7 +73,7 @@ Page {
                     color: !root.useCm ? StyleConstants.accent : StyleConstants.surfaceGray
                     Label {
                         anchors.centerIn: parent
-                        text: "FT"
+                        text: qsTr("FT")
                         font.pixelSize: 14
                         color: !root.useCm ? StyleConstants.background : StyleConstants.textMuted
                     }
@@ -86,8 +86,10 @@ Page {
 
             Label {
                 text: root.useCm
-                    ? (root.selectedHeightCm.toFixed(0) + " cm")
-                    : (Math.floor(root.selectedHeightCm / 30.48) + "' " + Math.round((root.selectedHeightCm % 30.48) / 2.54) + "\"")
+                    ? qsTr("%1 cm").arg(root.selectedHeightCm.toFixed(0))
+                    : qsTr("%1' %2\"")
+                        .arg(Math.floor(root.selectedHeightCm / 30.48))
+                        .arg(Math.round((root.selectedHeightCm % 30.48) / 2.54))
                 font.pixelSize: 36
                 font.bold: true
                 color: StyleConstants.textPrimary

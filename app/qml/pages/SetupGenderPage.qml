@@ -19,10 +19,10 @@ Page {
     SetupStepLayout {
         anchors.fill: parent
         anchors.margins: 20
-        stepTitle: "What's Your Gender"
-        stepSubtitle: "This helps us personalize your experience and recommendations."
+        stepTitle: qsTr("What's Your Gender")
+        stepSubtitle: qsTr("This helps us personalize your experience and recommendations.")
         showBackButton: true
-        buttonText: "Continue"
+        buttonText: qsTr("Continue")
         progressStep: stepIndex
         progressTotal: totalSteps
         canProceed: true
@@ -49,7 +49,7 @@ Page {
                         color: storageService.userIsMale ? StyleConstants.background : StyleConstants.textMuted
                     }
                     Label {
-                        text: "Male"
+                        text: qsTr("Male")
                         font.pixelSize: 16
                         color: storageService.userIsMale ? StyleConstants.background : StyleConstants.textMuted
                         anchors.horizontalCenter: parent.horizontalCenter
@@ -76,7 +76,7 @@ Page {
                         color: !storageService.userIsMale ? StyleConstants.background : StyleConstants.textMuted
                     }
                     Label {
-                        text: "Female"
+                        text: qsTr("Female")
                         font.pixelSize: 16
                         color: !storageService.userIsMale ? StyleConstants.background : StyleConstants.textMuted
                         anchors.horizontalCenter: parent.horizontalCenter

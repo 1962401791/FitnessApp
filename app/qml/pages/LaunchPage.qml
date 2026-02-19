@@ -78,7 +78,7 @@ Page {
             spacing: 24
 
             Label {
-                text: "欢迎使用"
+                text: qsTr("欢迎使用")
                 font.pixelSize: 18
                 color: "#FFFFFF"
                 Layout.alignment: Qt.AlignHCenter
@@ -102,7 +102,7 @@ Page {
             }
 
             Label {
-                text: "HSport"
+                text: qsTr("HSport")
                 font.pixelSize: 36
                 font.bold: true
                 color: StyleConstants.accent
@@ -110,7 +110,7 @@ Page {
             }
 
             Label {
-                text: "健康生活 · 健身融入每一天"
+                text: qsTr("健康生活 · 健身融入每一天")
                 font.pixelSize: 14
                 color: "#FFFFFF"
                 Layout.alignment: Qt.AlignHCenter

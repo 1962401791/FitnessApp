@@ -5,7 +5,7 @@ import FitnessApp 1.0
 
 Page {
     id: root
-    title: "每日总结"
+    title: qsTr("每日总结")
     property Item stackView
     background: Rectangle { color: StyleConstants.background }
 
@@ -30,7 +30,7 @@ Page {
                     onClicked: stackView.pop()
                 }
                 Label {
-                    text: "今日总结"
+                    text: qsTr("今日总结")
                     font.pixelSize: StyleConstants.fontSizeTitle
                     Layout.fillWidth: true
                 }
@@ -44,14 +44,14 @@ Page {
                 ColumnLayout {
                     anchors.centerIn: parent
                     Label {
-                        text: storageService.dailyLogModel.totalKcal.toFixed(0) + " kcal"
+                        text: qsTr("%1 kcal").arg(storageService.dailyLogModel.totalKcal.toFixed(0))
                         font.pixelSize: StyleConstants.fontSizeDisplay
                         font.bold: true
                         color: StyleConstants.textOnPrimary
                         Layout.alignment: Qt.AlignHCenter
                     }
                     Label {
-                        text: "今日摄入"
+                        text: qsTr("今日摄入")
                         font.pixelSize: StyleConstants.fontSizeSmall
                         color: StyleConstants.primaryLight
                         Layout.alignment: Qt.AlignHCenter
@@ -60,21 +60,21 @@ Page {
             }
 
             NutrientBar {
-                label: "蛋白质"
+                label: qsTr("蛋白质")
                 value: storageService.dailyLogModel.totalProteinG
                 goal: storageService.goalProteinG
                 barColor: StyleConstants.primary
                 Layout.fillWidth: true
             }
             NutrientBar {
-                label: "碳水"
+                label: qsTr("碳水")
                 value: storageService.dailyLogModel.totalCarbsG
                 goal: storageService.goalCarbsG
                 barColor: StyleConstants.accent
                 Layout.fillWidth: true
             }
             NutrientBar {
-                label: "脂肪"
+                label: qsTr("脂肪")
                 value: storageService.dailyLogModel.totalFatG
                 goal: storageService.goalFatG
                 barColor: StyleConstants.primaryLight
@@ -82,14 +82,14 @@ Page {
             }
 
             Label {
-                text: "BMR 与运动消耗：待实现"
+                text: qsTr("BMR 与运动消耗：待实现")
                 font.pixelSize: StyleConstants.fontSizeSmall
                 color: StyleConstants.textMuted
                 Layout.fillWidth: true
             }
 
             Button {
-                text: "返回"
+                text: qsTr("返回")
                 Layout.fillWidth: true
                 onClicked: stackView.pop()
             }

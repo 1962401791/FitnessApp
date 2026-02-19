@@ -5,7 +5,7 @@ import FitnessApp 1.0
 
 Page {
     id: root
-    title: "设置"
+    title: qsTr("设置")
     property Item stackView
     background: Rectangle { color: StyleConstants.background }
 
@@ -30,14 +30,14 @@ Page {
                     onClicked: stackView.pop()
                 }
                 Label {
-                    text: "设置"
+                    text: qsTr("设置")
                     font.pixelSize: StyleConstants.fontSizeTitle
                     Layout.fillWidth: true
                 }
             }
 
             Label {
-                text: "每日目标 (g)"
+                text: qsTr("每日目标 (g)")
                 font.pixelSize: StyleConstants.fontSizeBody
                 font.bold: true
                 color: StyleConstants.textPrimary
@@ -45,7 +45,7 @@ Page {
 
             RowLayout {
                 Layout.fillWidth: true
-                Label { text: "蛋白质"; Layout.preferredWidth: 70 }
+                Label { text: qsTr("蛋白质"); Layout.preferredWidth: 70 }
                 SpinBox {
                     from: 0
                     to: 500
@@ -58,7 +58,7 @@ Page {
             }
             RowLayout {
                 Layout.fillWidth: true
-                Label { text: "碳水"; Layout.preferredWidth: 70 }
+                Label { text: qsTr("碳水"); Layout.preferredWidth: 70 }
                 SpinBox {
                     from: 0
                     to: 600
@@ -71,7 +71,7 @@ Page {
             }
             RowLayout {
                 Layout.fillWidth: true
-                Label { text: "脂肪"; Layout.preferredWidth: 70 }
+                Label { text: qsTr("脂肪"); Layout.preferredWidth: 70 }
                 SpinBox {
                     from: 0
                     to: 300
@@ -84,7 +84,7 @@ Page {
             }
 
             Label {
-                text: "基础信息"
+                text: qsTr("基础信息")
                 font.pixelSize: StyleConstants.fontSizeBody
                 font.bold: true
                 color: StyleConstants.textPrimary
@@ -92,21 +92,24 @@ Page {
             }
 
             Label {
-                text: "年龄 " + storageService.userAge + "  身高 " + storageService.userHeightCm + " cm  体重 " + storageService.userWeightKg + " kg"
+                text: qsTr("年龄 %1  身高 %2 cm  体重 %3 kg")
+                    .arg(storageService.userAge)
+                    .arg(storageService.userHeightCm)
+                    .arg(storageService.userWeightKg)
                 font.pixelSize: StyleConstants.fontSizeSmall
                 color: StyleConstants.textMuted
                 Layout.fillWidth: true
             }
 
             Button {
-                text: "修改基础信息"
+                text: qsTr("修改基础信息")
                 Layout.fillWidth: true
                 flat: true
                 onClicked: stackView.push("qrc:/FitnessApp/qml/pages/BasicInfoPage.qml", { stackView: stackView, isEditMode: true })
             }
 
             Button {
-                text: "返回"
+                text: qsTr("返回")
                 Layout.fillWidth: true
                 onClicked: stackView.pop()
                 Layout.topMargin: StyleConstants.spacingMedium

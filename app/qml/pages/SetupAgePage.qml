@@ -27,10 +27,10 @@ Page {
     SetupStepLayout {
         anchors.fill: parent
         anchors.margins: 20
-        stepTitle: "How Old Are You?"
-        stepSubtitle: "Your age helps us calculate your daily calorie needs."
+        stepTitle: qsTr("How Old Are You?")
+        stepSubtitle: qsTr("Your age helps us calculate your daily calorie needs.")
         showBackButton: true
-        buttonText: "Continue"
+        buttonText: qsTr("Continue")
         progressStep: stepIndex
         progressTotal: totalSteps
         canProceed: true

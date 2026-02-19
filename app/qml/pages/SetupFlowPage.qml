@@ -13,6 +13,7 @@ Page {
     property Item stackView
     property bool isGuestMode: true
     property int startStep: 0
+    property bool initialStepPushed: false
 
     readonly property int guestStepCount: 4
     readonly property int loginStepCount: 8
@@ -71,7 +72,11 @@ Page {
         stackView.replace("qrc:/FitnessApp/qml/pages/HomePage.qml", { stackView: stackView })
     }
 
-    Component.onCompleted: {
+    function pushInitialStep() {
+        if (initialStepPushed) {
+            return
+        }
+        initialStepPushed = true
         currentStep = startStep
         var comp = stepComponent(startStep)
         if (comp) {
@@ -83,6 +88,16 @@ Page {
                 isGuestMode: root.isGuestMode
             }
             stackView.push(comp, props)
+        }
+    }
+
+    Component.onCompleted: {
+        currentStep = startStep
+    }
+
+    StackView.onStatusChanged: {
+        if (StackView.status === StackView.Active) {
+            pushInitialStep()
         }
     }
 

@@ -14,9 +14,9 @@ Page {
     background: Rectangle { color: "#0F0F1A" }
 
     readonly property var slides: [
-        { iconPath: StyleConstants.onbIconActivityPath, title: "开启健康生活新旅程", bg: StyleConstants.onb1BgPath },
-        { iconPath: StyleConstants.onbIconApplePath, title: "营养建议，融入每一天", bg: StyleConstants.onb2BgPath },
-        { iconPath: StyleConstants.onbIconUsersPath, title: "一起挑战，共同成长", bg: StyleConstants.onb3BgPath }
+        { iconPath: StyleConstants.onbIconActivityPath, title: qsTr("开启健康生活新旅程"), bg: StyleConstants.onb1BgPath },
+        { iconPath: StyleConstants.onbIconApplePath, title: qsTr("营养建议，融入每一天"), bg: StyleConstants.onb2BgPath },
+        { iconPath: StyleConstants.onbIconUsersPath, title: qsTr("一起挑战，共同成长"), bg: StyleConstants.onb3BgPath }
     ]
 
     function finishOnboarding() {
@@ -70,7 +70,7 @@ Page {
                 anchors.right: parent.right
                 anchors.rightMargin: 16
                 spacing: 6
-                Label { text: "跳过"; font.pixelSize: 14; color: StyleConstants.accent }
+                Label { text: qsTr("跳过"); font.pixelSize: 14; color: StyleConstants.accent }
                 Text { text: "→"; font.pixelSize: 18; color: StyleConstants.accent }
             }
             MouseArea {
@@ -144,7 +144,9 @@ Page {
                         : "#4A4A4A"
                     Label {
                         anchors.centerIn: parent
-                        text: swipeView.currentIndex === root.slides.length - 1 ? "开始使用" : "下一页"
+                        text: swipeView.currentIndex === root.slides.length - 1
+                            ? qsTr("开始使用")
+                            : qsTr("下一页")
                         font.pixelSize: 16
                         font.bold: true
                         color: "#FFFFFF"

@@ -14,7 +14,7 @@ Page {
     property int totalSteps: 8
     property bool isGuestMode: false
 
-    readonly property var levelLabels: ["Beginner", "Intermediate", "Advance"]
+    readonly property var levelLabels: [qsTr("Beginner"), qsTr("Intermediate"), qsTr("Advance")]
     property int selectedLevel: storageService.userActivityLevel
 
     background: Rectangle { color: StyleConstants.backgroundSecondary }
@@ -22,10 +22,10 @@ Page {
     SetupStepLayout {
         anchors.fill: parent
         anchors.margins: 20
-        stepTitle: "Physical Activity Level"
-        stepSubtitle: "How active are you in your daily life?"
+        stepTitle: qsTr("Physical Activity Level")
+        stepSubtitle: qsTr("How active are you in your daily life?")
         showBackButton: true
-        buttonText: "Continue"
+        buttonText: qsTr("Continue")
         progressStep: stepIndex
         progressTotal: totalSteps
         canProceed: true

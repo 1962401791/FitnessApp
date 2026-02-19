@@ -5,7 +5,7 @@ import FitnessApp 1.0
 
 Page {
     id: root
-    title: "添加食物"
+    title: qsTr("添加食物")
     property Item stackView
     background: Rectangle { color: StyleConstants.background }
 
@@ -24,7 +24,7 @@ Page {
                 onClicked: stackView.pop()
             }
             Label {
-                text: "添加食物"
+                text: qsTr("添加食物")
                 font.pixelSize: StyleConstants.fontSizeTitle
                 Layout.fillWidth: true
             }
@@ -32,7 +32,7 @@ Page {
 
         TextField {
             id: searchField
-            placeholderText: "搜索食物..."
+            placeholderText: qsTr("搜索食物...")
             Layout.fillWidth: true
             Layout.preferredHeight: StyleConstants.inputHeight
             background: Rectangle {
@@ -45,7 +45,7 @@ Page {
         }
 
         Label {
-            text: "时段"
+            text: qsTr("时段")
             font.pixelSize: StyleConstants.fontSizeSmall
             color: StyleConstants.textMuted
         }
@@ -54,7 +54,7 @@ Page {
             spacing: StyleConstants.spacingSmall
             property int selectedIndex: 0
             Repeater {
-                model: ["早餐", "中餐", "晚餐", "加餐"]
+                model: [qsTr("早餐"), qsTr("中餐"), qsTr("晚餐"), qsTr("加餐")]
                 Button {
                     text: modelData
                     flat: true
@@ -71,7 +71,7 @@ Page {
 
         RowLayout {
             Layout.fillWidth: true
-            Label { text: "份量 (g)"; Layout.preferredWidth: 70 }
+            Label { text: qsTr("份量 (g)"); Layout.preferredWidth: 70 }
             SpinBox {
                 id: amountSpin
                 from: 1
@@ -101,7 +101,10 @@ Page {
                             Layout.fillWidth: true
                         }
                         Label {
-                            text: "P" + model.proteinPer100g + " C" + model.carbsPer100g + " F" + model.fatPer100g
+                            text: qsTr("P%1 C%2 F%3")
+                                .arg(model.proteinPer100g)
+                                .arg(model.carbsPer100g)
+                                .arg(model.fatPer100g)
                             font.pixelSize: StyleConstants.fontSizeXs
                             color: StyleConstants.textMuted
                         }
@@ -119,7 +122,7 @@ Page {
         }
 
         Button {
-            text: "返回"
+            text: qsTr("返回")
             Layout.fillWidth: true
             onClicked: stackView.pop()
         }
