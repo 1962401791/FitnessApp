@@ -14,7 +14,7 @@ Page {
     property int totalSteps: 4
     property bool isGuestMode: true
 
-    background: Rectangle { color: StyleConstants.backgroundSecondary }
+    background: Rectangle { color: "#000000" }
 
     SetupStepLayout {
         anchors.fill: parent
@@ -32,26 +32,28 @@ Page {
 
         Row {
             anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 16
+            spacing: 24
 
             Rectangle {
-                width: 140
-                height: 160
-                radius: 80
-                color: storageService.userIsMale ? StyleConstants.accent : StyleConstants.surfaceGray
+                width: 150
+                height: 150
+                radius: 75
+                color: storageService.userIsMale ? "#2D2D2D" : "#1A1A1A"
+                border.width: storageService.userIsMale ? 0 : 1
+                border.color: "#2D2D2D"
                 Column {
                     anchors.centerIn: parent
-                    spacing: 8
+                    spacing: 12
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
                         text: "\u2642"
-                        font.pixelSize: 48
-                        color: storageService.userIsMale ? StyleConstants.background : StyleConstants.textMuted
+                        font.pixelSize: 56
+                        color: storageService.userIsMale ? StyleConstants.textPrimary : StyleConstants.textMuted
                     }
                     Label {
                         text: qsTr("Male")
-                        font.pixelSize: 16
-                        color: storageService.userIsMale ? StyleConstants.background : StyleConstants.textMuted
+                        font.pixelSize: 14
+                        color: storageService.userIsMale ? StyleConstants.textPrimary : StyleConstants.textMuted
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
                 }
@@ -62,22 +64,24 @@ Page {
             }
 
             Rectangle {
-                width: 140
-                height: 160
-                radius: 80
-                color: !storageService.userIsMale ? StyleConstants.accent : StyleConstants.surfaceGray
+                width: 150
+                height: 150
+                radius: 75
+                color: !storageService.userIsMale ? StyleConstants.accent : "#1A1A1A"
+                border.width: !storageService.userIsMale ? 0 : 1
+                border.color: "#2D2D2D"
                 Column {
                     anchors.centerIn: parent
-                    spacing: 8
+                    spacing: 12
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
                         text: "\u2640"
-                        font.pixelSize: 48
+                        font.pixelSize: 56
                         color: !storageService.userIsMale ? StyleConstants.background : StyleConstants.textMuted
                     }
                     Label {
                         text: qsTr("Female")
-                        font.pixelSize: 16
+                        font.pixelSize: 14
                         color: !storageService.userIsMale ? StyleConstants.background : StyleConstants.textMuted
                         anchors.horizontalCenter: parent.horizontalCenter
                     }

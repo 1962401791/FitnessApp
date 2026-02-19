@@ -17,7 +17,7 @@ Page {
     property bool useCm: true
     property double selectedHeightCm: storageService.userHeightCm > 0 ? storageService.userHeightCm : 165
 
-    background: Rectangle { color: StyleConstants.backgroundSecondary }
+    background: Rectangle { color: "#000000" }
 
     Component.onCompleted: {
         if (storageService.userHeightCm <= 0)
@@ -43,22 +43,23 @@ Page {
         }
 
         ColumnLayout {
-            width: parent.width - 40
+            width: parent.width - 64
             anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 16
+            spacing: 32
 
             Row {
                 Layout.alignment: Qt.AlignHCenter
                 spacing: 8
                 Rectangle {
-                    width: 80
-                    height: 40
-                    radius: 20
-                    color: root.useCm ? StyleConstants.accent : StyleConstants.surfaceGray
+                    width: 70
+                    height: 36
+                    radius: 18
+                    color: root.useCm ? StyleConstants.accent : "#2D2D2D"
                     Label {
                         anchors.centerIn: parent
                         text: qsTr("CM")
-                        font.pixelSize: 14
+                        font.pixelSize: 13
+                        font.bold: true
                         color: root.useCm ? StyleConstants.background : StyleConstants.textMuted
                     }
                     MouseArea {
@@ -67,14 +68,15 @@ Page {
                     }
                 }
                 Rectangle {
-                    width: 80
-                    height: 40
-                    radius: 20
-                    color: !root.useCm ? StyleConstants.accent : StyleConstants.surfaceGray
+                    width: 70
+                    height: 36
+                    radius: 18
+                    color: !root.useCm ? StyleConstants.accent : "#2D2D2D"
                     Label {
                         anchors.centerIn: parent
                         text: qsTr("FT")
-                        font.pixelSize: 14
+                        font.pixelSize: 13
+                        font.bold: true
                         color: !root.useCm ? StyleConstants.background : StyleConstants.textMuted
                     }
                     MouseArea {
@@ -84,29 +86,159 @@ Page {
                 }
             }
 
-            Label {
-                text: root.useCm
-                    ? qsTr("%1 cm").arg(root.selectedHeightCm.toFixed(0))
-                    : qsTr("%1' %2\"")
-                        .arg(Math.floor(root.selectedHeightCm / 30.48))
-                        .arg(Math.round((root.selectedHeightCm % 30.48) / 2.54))
-                font.pixelSize: 36
-                font.bold: true
-                color: StyleConstants.textPrimary
+            Row {
                 Layout.alignment: Qt.AlignHCenter
+                spacing: 6
+
+                Label {
+                    text: root.useCm
+                        ? root.selectedHeightCm.toFixed(0)
+                        : Math.floor(root.selectedHeightCm / 30.48).toString()
+                    font.pixelSize: 48
+                    font.bold: true
+                    color: StyleConstants.textPrimary
+                }
+                Label {
+                    text: root.useCm
+                        ? qsTr("cm")
+                        : qsTr("ft")
+                    font.pixelSize: 18
+                    font.bold: true
+                    color: StyleConstants.textMuted
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
-            Slider {
+            Item {
+                id: heightPicker
                 Layout.fillWidth: true
-                from: root.useCm ? 100 : 3.28
-                to: root.useCm ? 250 : 8.2
-                value: root.useCm ? root.selectedHeightCm : root.selectedHeightCm / 30.48
-                stepSize: root.useCm ? 1 : 0.01
-                onValueChanged: {
-                    if (root.useCm)
-                        root.selectedHeightCm = Math.round(value)
-                    else
-                        root.selectedHeightCm = Math.round(value * 30.48)
+                Layout.preferredHeight: 280
+                Layout.bottomMargin: 16
+                property int minValue: 100
+                property int maxValue: 250
+                property int itemHeight: 18
+                property bool syncFromList: false
+                readonly property int count: maxValue - minValue + 1
+
+                function updateFromList(index) {
+                    var nextValue = minValue + index
+                    if (nextValue !== root.selectedHeightCm) {
+                        root.selectedHeightCm = nextValue
+                    }
+                }
+
+                Rectangle {
+                    id: heightTrack
+                    width: 72
+                    height: parent.height
+                    radius: 16
+                    color: StyleConstants.primary
+                    opacity: 0.75
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+
+                ListView {
+                    id: heightScale
+                    anchors.fill: heightTrack
+                    anchors.margins: 10
+                    orientation: ListView.Vertical
+                    spacing: 0
+                    clip: true
+                    boundsBehavior: Flickable.StopAtBounds
+                    snapMode: ListView.SnapToItem
+                    highlightRangeMode: ListView.StrictlyEnforceRange
+                    preferredHighlightBegin: (height - heightPicker.itemHeight) / 2
+                    preferredHighlightEnd: (height - heightPicker.itemHeight) / 2
+                    model: heightPicker.count
+
+                    delegate: Item {
+                        width: heightTrack.width
+                        height: heightPicker.itemHeight
+                        property int value: heightPicker.minValue + index
+
+                        Rectangle {
+                            width: value % 5 === 0 ? 24 : 14
+                            height: 2
+                            radius: 1
+                            color: "#FFFFFF"
+                            opacity: value % 5 === 0 ? 0.9 : 0.6
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                    }
+
+                    onCurrentIndexChanged: {
+                        if (!heightPicker.syncFromList) {
+                            heightPicker.updateFromList(currentIndex)
+                        }
+                    }
+                }
+
+                ListView {
+                    id: heightLabels
+                    width: 56
+                    height: heightTrack.height
+                    x: heightTrack.x - width - 16
+                    y: heightTrack.y
+                    orientation: ListView.Vertical
+                    spacing: 0
+                    clip: true
+                    interactive: false
+                    model: heightPicker.count
+                    contentY: heightScale.contentY
+
+                    delegate: Item {
+                        width: heightLabels.width
+                        height: heightPicker.itemHeight
+                        property int value: heightPicker.minValue + index
+
+                        Label {
+                            anchors.fill: parent
+                            text: value % 5 === 0 ? value.toString() : ""
+                            horizontalAlignment: Text.AlignRight
+                            verticalAlignment: Text.AlignVCenter
+                            font.pixelSize: value === Math.round(root.selectedHeightCm) ? 18 : 14
+                            font.bold: value === Math.round(root.selectedHeightCm)
+                            color: value === Math.round(root.selectedHeightCm) ? "#FFFFFF" : "#8B8B8B"
+                            rightPadding: 6
+                        }
+                    }
+                }
+
+                Rectangle {
+                    width: 28
+                    height: 2
+                    radius: 1
+                    color: StyleConstants.accent
+                    anchors.verticalCenter: heightTrack.verticalCenter
+                    x: heightTrack.x + (heightTrack.width - width) / 2
+                }
+
+                Canvas {
+                    width: 12
+                    height: 16
+                    anchors.verticalCenter: heightTrack.verticalCenter
+                    x: heightTrack.x + heightTrack.width + 10
+                    onPaint: {
+                        var ctx = getContext("2d")
+                        ctx.clearRect(0, 0, width, height)
+                        ctx.fillStyle = StyleConstants.accent
+                        ctx.beginPath()
+                        ctx.moveTo(0, height / 2)
+                        ctx.lineTo(width, 0)
+                        ctx.lineTo(width, height)
+                        ctx.closePath()
+                        ctx.fill()
+                    }
+                }
+
+                Connections {
+                    target: root
+                    function onSelectedHeightCmChanged() {
+                        heightPicker.syncFromList = true
+                        heightScale.currentIndex = Math.round(root.selectedHeightCm) - heightPicker.minValue
+                        heightPicker.syncFromList = false
+                    }
                 }
             }
         }

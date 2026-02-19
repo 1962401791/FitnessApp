@@ -64,7 +64,7 @@ Page {
                 color: guestBtn.pressed ? StyleConstants.primaryLight : StyleConstants.primary
             }
             onClicked: {
-                if (storageService.hasBasicInfo) {
+                if (storageService.hasBasicInfo && 0) {
                     stackView.replace("qrc:/FitnessApp/qml/pages/HomePage.qml", { stackView: stackView })
                 } else {
                     stackView.push("qrc:/FitnessApp/qml/pages/SetupFlowPage.qml", {

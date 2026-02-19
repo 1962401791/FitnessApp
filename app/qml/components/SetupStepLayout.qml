@@ -27,54 +27,65 @@ Item {
         anchors.fill: parent
         spacing: 0
 
-        Rectangle {
-            Layout.fillWidth: true
-            Layout.preferredHeight: 4
-            color: StyleConstants.accent
-        }
-
         Item {
             Layout.fillWidth: true
-            Layout.preferredHeight: 56
-            RowLayout {
-                anchors.fill: parent
-                anchors.leftMargin: 20
-                anchors.rightMargin: 20
-                spacing: 12
-                Item {
-                    Layout.preferredWidth: 24
-                    Layout.preferredHeight: 24
-                    visible: root.showBackButton
+            Layout.preferredHeight: 60
+            
+            Item {
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.topMargin: 16
+                anchors.leftMargin: 16
+                width: 40
+                height: 40
+                visible: root.showBackButton
+                
+                Rectangle {
+                    anchors.centerIn: parent
+                    width: 40
+                    height: 40
+                    radius: 20
+                    color: "transparent"
+                    border.width: 0
+                    
                     Text {
                         text: "\u2190"
                         font.pixelSize: 24
                         color: StyleConstants.textPrimary
                         anchors.centerIn: parent
                     }
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: root.backClicked()
-                    }
                 }
-                ColumnLayout {
-                    Layout.fillWidth: true
-                    spacing: 4
-                    Label {
-                        text: root.stepTitle
-                        font.pixelSize: 22
-                        font.bold: true
-                        color: StyleConstants.textPrimary
-                        wrapMode: Text.WordWrap
-                        Layout.fillWidth: true
-                    }
-                    Label {
-                        text: root.stepSubtitle
-                        font.pixelSize: 14
-                        color: StyleConstants.textMuted
-                        wrapMode: Text.WordWrap
-                        Layout.fillWidth: true
-                    }
+                
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: root.backClicked()
                 }
+            }
+        }
+        
+        ColumnLayout {
+            Layout.fillWidth: true
+            Layout.leftMargin: 32
+            Layout.rightMargin: 32
+            spacing: 8
+            
+            Label {
+                text: root.stepTitle
+                font.pixelSize: 20
+                font.bold: true
+                color: StyleConstants.textPrimary
+                wrapMode: Text.WordWrap
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignLeft
+            }
+            Label {
+                text: root.stepSubtitle
+                font.pixelSize: 12
+                color: StyleConstants.textMuted
+                wrapMode: Text.WordWrap
+                Layout.fillWidth: true
+                visible: root.stepSubtitle !== ""
+                horizontalAlignment: Text.AlignLeft
             }
         }
 
@@ -82,14 +93,17 @@ Item {
             id: contentArea
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.topMargin: 16
+            Layout.topMargin: 32
         }
 
         Rectangle {
             Layout.fillWidth: true
-            Layout.preferredHeight: 52
-            Layout.topMargin: 16
-            radius: 26
+            Layout.preferredHeight: 56
+            Layout.topMargin: 24
+            Layout.leftMargin: 32
+            Layout.rightMargin: 32
+            Layout.bottomMargin: 32
+            radius: 28
             color: root.canProceed ? StyleConstants.primary : StyleConstants.surfaceGray
             Label {
                 anchors.centerIn: parent

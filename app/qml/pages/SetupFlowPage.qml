@@ -4,8 +4,8 @@ import QtQuick.Layouts
 import FitnessApp 1.0
 
 /**
- * Setup flow container: guest mode (4 steps) or login mode (8 steps).
- * Guest: Intro → Gender → Age → Weight → HomePage
+ * Setup flow container: guest mode (5 steps) or login mode (8 steps).
+ * Guest: Intro → Gender → Age → Weight → Height → HomePage
  * Login: (optional skip) Intro → Gender → Age → Weight → Height → Goal → Activity → Profile → HomePage
  */
 Page {
@@ -15,7 +15,7 @@ Page {
     property int startStep: 0
     property bool initialStepPushed: false
 
-    readonly property int guestStepCount: 4
+    readonly property int guestStepCount: 5
     readonly property int loginStepCount: 8
     readonly property int totalSteps: isGuestMode ? guestStepCount : loginStepCount
     property int currentStep: 0

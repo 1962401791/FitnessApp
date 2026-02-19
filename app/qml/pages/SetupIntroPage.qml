@@ -14,7 +14,7 @@ Page {
     property int totalSteps: 4
     property bool isGuestMode: true
 
-    background: Rectangle { color: StyleConstants.backgroundSecondary }
+    background: Rectangle { color: "#000000" }
 
     SetupStepLayout {
         anchors.fill: parent
@@ -30,15 +30,18 @@ Page {
         onPrimaryClicked: flowPage.goNext()
 
         ColumnLayout {
-            width: parent.width - 40
+            width: parent.width
             anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 16
+            spacing: 24
 
             Rectangle {
                 Layout.fillWidth: true
-                Layout.preferredHeight: 180
+                Layout.preferredHeight: 240
+                Layout.leftMargin: 32
+                Layout.rightMargin: 32
                 radius: 16
                 color: StyleConstants.surfaceGray
+                clip: true
                 Image {
                     anchors.fill: parent
                     source: StyleConstants.onb1BgPath
@@ -48,21 +51,25 @@ Page {
 
             Label {
                 text: qsTr("Consistency Is The Key To Progress. Don't Give Up!")
-                font.pixelSize: 18
+                font.pixelSize: 16
                 font.bold: true
                 color: StyleConstants.accent
-                horizontalAlignment: Text.AlignHCenter
+                horizontalAlignment: Text.AlignLeft
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
+                Layout.leftMargin: 32
+                Layout.rightMargin: 32
             }
 
             Label {
                 text: qsTr("Track your workouts, set goals, and build habits that last. Every small step counts.")
-                font.pixelSize: 13
+                font.pixelSize: 12
                 color: StyleConstants.textMuted
-                horizontalAlignment: Text.AlignHCenter
+                horizontalAlignment: Text.AlignLeft
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
+                Layout.leftMargin: 32
+                Layout.rightMargin: 32
             }
         }
     }

@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Shapes
 import FitnessApp 1.0
 
 /**
@@ -79,13 +80,51 @@ Page {
             }
         }
 
-        Rectangle {
+        Item {
             id: card
             anchors.bottom: parent.bottom
             width: parent.width
             height: 320
-            radius: 24
-            color: StyleConstants.cardOverlay
+            property int cardRadius: 28
+            property color cardTint: "#896CFE" // Base color without unnecessary alpha in definition if using Opacity elsewhere, but format #AARRGGBB is fine too. Using 50% of 896CFE.
+
+            // Use Shape to draw top-rounded, bottom-square background with single transparency
+            Shape {
+                id: shapeBg
+                anchors.fill: parent
+                layer.enabled: true
+                layer.samples: 4 // Antialiasing
+
+                ShapePath {
+                    strokeWidth: 0
+                    strokeColor: "transparent"
+                    fillColor: "#80896CFE" // 50% opacity
+
+                    startX: 0; startY: card.cardRadius
+                    // Left-top corner
+                    PathArc {
+                        x: card.cardRadius
+                        y: 0
+                        radiusX: card.cardRadius; radiusY: card.cardRadius
+                        useLargeArc: false
+                    }
+                    // Top edge
+                    PathLine { x: card.width - card.cardRadius; y: 0 }
+                    // Right-top corner
+                    PathArc {
+                        x: card.width
+                        y: card.cardRadius
+                        radiusX: card.cardRadius; radiusY: card.cardRadius
+                        useLargeArc: false
+                    }
+                    // Right edge
+                    PathLine { x: card.width; y: card.height }
+                     // Bottom edge
+                    PathLine { x: 0; y: card.height }
+                     // Left edge back to start
+                    PathLine { x: 0; y: card.cardRadius }
+                }
+            }
 
             ColumnLayout {
                 anchors.fill: parent
