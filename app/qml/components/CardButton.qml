@@ -8,7 +8,7 @@ Rectangle {
     signal clicked()
     property string title: ""
     property string subtitle: ""
-    property string icon: ""
+    property string iconSource: ""
     implicitHeight: 90
     radius: StyleConstants.radiusLarge
     color: mouse.pressed ? StyleConstants.primaryPale : StyleConstants.cardBackground
@@ -29,10 +29,11 @@ Rectangle {
             width: 32
             height: 32
             Layout.alignment: Qt.AlignLeft
-            Label {
-                text: root.icon
-                font.pixelSize: 24
+            Icon {
                 anchors.centerIn: parent
+                width: 28
+                height: 28
+                iconSource: root.iconSource
             }
         }
         Label {

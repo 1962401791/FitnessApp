@@ -1,5 +1,35 @@
 # Daily Progress Log
 
+## 2026-02-19
+
+- **HSport.pen 按操作逻辑链分组展示**：在画布中新增 5 个 Note 引导标签（1. 入口 Launch / 2. Onboarding 引导 / 4. Set Up 设置 / 5. 主应用 Tab / 子页面）；将各帧重新排布为纵向分组，便于按流程浏览；docs/hsport-pen-ui-logic-map.md 更新流程说明。
+
+- **Diet 与 Health 页面去重**：
+  - 6-Diet 与 8-Health 展示重合：二者均展示今日摄入 kcal 与三大营养素。
+  - 8-Health 重新定位为「健康与规划」：移除健康 Summary 紫色卡、三大营养素进度条、「查看每日总结」按钮。
+  - 替换为：本周快览（运动天数、目标完成）、规划入口（训练计划、健康报告）、趋势与建议占位。
+  - 6-Diet 保留为饮食单一真相源；8-Health 与其互补不重复。
+  - docs/hsport-pen-ui-logic-map.md 新增 3.3 底部导航 Tab 页映射及职责说明。
+
+- **HSport.pen 6-Diet 页重新设计**：
+  - **三大营养素摄入阈值**：蛋白/碳水/脂肪/kcal 每张卡片增加进度条 + 当前/目标值（如 45/80g）+ 级别文案（减脂|正常|增加）。
+  - **饮食统计图表化**：新增「今日营养构成」环形图（P/C/F 比例）+ 图例；「餐次热量分布」横向条形图（早/中/晚/加餐 kcal）；保留「今日记录」紧凑列表。
+  - **食物添加页 AddFood-早餐**：参考薄荷布局——顶部日期+餐次、搜索框、快捷按钮（复制记录/快速记录/扫条形码）；左侧分类导航（常见/自定义/已购/主食/蔬果/肉蛋奶）；右侧食物列表（缩略图+名称+千卡+加号按钮）；底部栏（早餐标识+完成按钮）；沿用 $backgroundDark、$primary、$surfaceGray 等设计系统变量。
+
+- **饮食页按时段入口重构**：移除顶部「添加」按钮；在 MacroSummary 下方新增 4 个时段入口（早餐/中餐/晚餐/加餐）；数据层新增 meal_type（0–3），daily_log 表迁移；DailyLogEntry/DailyLogModel 扩展 mealType/mealTypeName；StorageService.addLogEntry(foodId, amountG, mealType)；AddFoodPage 支持 presetMealType；FoodEntryRow 显示 mealTypeName · kcal；新增 icon_breakfast/lunch/dinner/snack.svg；HSport.pen 6-Diet 同步更新。
+
+- **饮食页三大营养素展示优化**：原「P 45 C 120 F 38 896 kcal」单行文字改为 4 张独立卡片（蛋白质/碳水/脂肪/kcal），每张带图标、数值、单位；新增 SVG 矢量图标 `icon_protein.svg`（蛋形 #896CFE）、`icon_carbs.svg`（麦穗 #E2F163）、`icon_fat.svg`（油滴 #B3A0FF）、`icon_calorie.svg`（火焰 白色）；新增 MacroSummary.qml、MacroSummaryCard.qml 组件；DietLogPage 改用 MacroSummary；HSport.pen 中 6-Diet 帧同步更新为 4 宫格布局；StyleConstants 新增 iconProteinPath 等 4 个路径；CMakeLists 注册新资源与组件。
+
+- **Logo 重设计**：logo.svg 改为小写 h 流线体（含 s 灵动感），偏紫粉色 #B57EDC；logo.png 深色背景 #121212；Android 自适应图标：background #121212、foreground 为矢量 h；StyleConstants 新增 logoColor。
+
+- **矢量图标系统**：新增 `resources/images/icons/` 目录，生成 arrow_left、chevron_right、diet、exercise、chart、settings 等 SVG；统一路径由 StyleConstants 管理；新增 Icon.qml 组件；CardButton 改用 iconSource；各页面 "←"→iconArrowLeftPath、"→"→iconChevronRightAccentPath，emoji→对应 icon 路径。详见 `resources/images/icons/README.md`。
+
+- **设计风格审查与修复**：依据 `StyleConstants.qml` 与 `HSport.pen` 设计稿，完成代码与设计风格对齐。
+- **报告**：新增 `docs/design-style-audit-report.md` 记录问题与修复。
+- **StyleConstants 扩展**：新增 `radiusUnitToggle`、`fontSizeValueDisplay`、`fontSizeAgeDisplay`、`spacingPage`、`spacingLayout`。
+- **Setup 流程**：统一背景色 (#000000→backgroundSecondary)、picker 未选中颜色 (#2D2D2D/#4B4B4B/#8B8B8B→textMuted)、主按钮圆角 (28→radiusXLarge)、硬编码颜色/字体/间距替换为 StyleConstants。
+- **其他页面**：OnboardingPage、LaunchPage 的 #FFFFFF→textPrimary；CardButton 图标增加 color、fontSizeDisplay。
+
 ## 2026-02-18
 
 - **Setup 流程 QML 实现**：游客模式仅前 4 步（4-A Intro → 4.1 Gender → 4.2 Age → 4.3 Weight），登录模式 8 步（预留 4.4–4.7），完成流程进入 HomePage。

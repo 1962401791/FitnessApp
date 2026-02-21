@@ -63,33 +63,51 @@ qt_add_qml_module(FitnessApp
         resources/images/onboarding/icon_users.svg
         resources/images/onboarding/icon_male.svg
         resources/images/onboarding/icon_female.svg
+        resources/images/icons/icon_arrow_left.svg
+        resources/images/icons/icon_chevron_right.svg
+        resources/images/icons/icon_chevron_right_accent.svg
+        resources/images/icons/icon_diet.svg
+        resources/images/icons/icon_exercise.svg
+        resources/images/icons/icon_chart.svg
+        resources/images/icons/icon_settings.svg
+        resources/images/icons/icon_protein.svg
+        resources/images/icons/icon_carbs.svg
+        resources/images/icons/icon_fat.svg
+        resources/images/icons/icon_calorie.svg
+        resources/images/icons/icon_breakfast.svg
+        resources/images/icons/icon_lunch.svg
+        resources/images/icons/icon_dinner.svg
+        resources/images/icons/icon_snack.svg
     QML_FILES
         qml/main.qml
         qml/styles/StyleConstants.qml
-        qml/pages/LaunchPage.qml
-        qml/pages/OnboardingPage.qml
-        qml/pages/ModeSelectPage.qml
-        qml/pages/BasicInfoPage.qml
-        qml/pages/SetupFlowPage.qml
-        qml/pages/SetupIntroPage.qml
-        qml/pages/SetupGenderPage.qml
-        qml/pages/SetupAgePage.qml
-        qml/pages/SetupWeightPage.qml
-        qml/pages/SetupHeightPage.qml
-        qml/pages/SetupGoalPage.qml
-        qml/pages/SetupActivityPage.qml
-        qml/pages/SetupProfilePage.qml
-        qml/pages/HomePage.qml
-        qml/pages/DietLogPage.qml
-        qml/pages/AddFoodPage.qml
-        qml/pages/DailySummaryPage.qml
-        qml/pages/ExerciseLogPage.qml
-        qml/pages/AddExercisePage.qml
-        qml/pages/SettingsPage.qml
+        qml/pages/onboarding/LaunchPage.qml
+        qml/pages/onboarding/OnboardingPage.qml
+        qml/pages/onboarding/ModeSelectPage.qml
+        qml/pages/main/BasicInfoPage.qml
+        qml/pages/setup/SetupFlowPage.qml
+        qml/pages/setup/SetupIntroPage.qml
+        qml/pages/setup/SetupGenderPage.qml
+        qml/pages/setup/SetupAgePage.qml
+        qml/pages/setup/SetupWeightPage.qml
+        qml/pages/setup/SetupHeightPage.qml
+        qml/pages/setup/SetupGoalPage.qml
+        qml/pages/setup/SetupActivityPage.qml
+        qml/pages/setup/SetupProfilePage.qml
+        qml/pages/main/HomePage.qml
+        qml/pages/diet/DietLogPage.qml
+        qml/pages/diet/AddFoodPage.qml
+        qml/pages/main/DailySummaryPage.qml
+        qml/pages/exercise/ExerciseLogPage.qml
+        qml/pages/exercise/AddExercisePage.qml
+        qml/pages/main/SettingsPage.qml
+        qml/components/Icon.qml
         qml/components/NutrientBar.qml
         qml/components/SetupStepLayout.qml
         qml/components/FoodEntryRow.qml
         qml/components/CardButton.qml
+        qml/components/MacroSummary.qml
+        qml/components/MacroSummaryCard.qml
 )
 
 qt_add_translations(FitnessApp

@@ -24,7 +24,7 @@ Page {
         if (typeof isDebugBuild === "undefined" || !isDebugBuild) {
             storageService.hasSeenOnboarding = true
         }
-        stackView.replace("qrc:/FitnessApp/qml/pages/ModeSelectPage.qml", { stackView: stackView })
+        stackView.replace("qrc:/FitnessApp/qml/pages/onboarding/ModeSelectPage.qml", { stackView: stackView })
     }
 
     Item {
@@ -72,7 +72,13 @@ Page {
                 anchors.rightMargin: 16
                 spacing: 6
                 Label { text: qsTr("跳过"); font.pixelSize: 14; color: StyleConstants.accent }
-                Text { text: "→"; font.pixelSize: 18; color: StyleConstants.accent }
+                Image {
+                    width: 20
+                    height: 20
+                    source: StyleConstants.iconChevronRightAccentPath
+                    fillMode: Image.PreserveAspectFit
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
             MouseArea {
                 anchors.fill: parent
@@ -150,7 +156,7 @@ Page {
                     text: root.slides[swipeView.currentIndex] ? root.slides[swipeView.currentIndex].title : ""
                     font.pixelSize: 22
                     font.bold: true
-                    color: "#FFFFFF"
+                    color: StyleConstants.textPrimary
                     horizontalAlignment: Text.AlignHCenter
                     wrapMode: Text.WordWrap
                 }
@@ -164,7 +170,7 @@ Page {
                             width: index === swipeView.currentIndex ? 24 : 8
                             height: 8
                             radius: 4
-                            color: index === swipeView.currentIndex ? "#FFFFFF" : "rgba(255,255,255,0.4)"
+                            color: index === swipeView.currentIndex ? StyleConstants.textPrimary : "rgba(255,255,255,0.4)"
                             Behavior on width { NumberAnimation { duration: 150 } }
                         }
                     }
@@ -188,7 +194,7 @@ Page {
                             : qsTr("下一页")
                         font.pixelSize: 16
                         font.bold: true
-                        color: "#FFFFFF"
+                        color: StyleConstants.textPrimary
                     }
                     MouseArea {
                         anchors.fill: parent

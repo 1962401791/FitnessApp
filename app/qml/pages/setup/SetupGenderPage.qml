@@ -14,11 +14,11 @@ Page {
     property int totalSteps: 4
     property bool isGuestMode: true
 
-    background: Rectangle { color: "#000000" }
+    background: Rectangle { color: StyleConstants.backgroundSecondary }
 
     SetupStepLayout {
         anchors.fill: parent
-        anchors.margins: 20
+        anchors.margins: StyleConstants.spacingPage
         stepTitle: qsTr("What's Your Gender")
         stepSubtitle: qsTr("This helps us personalize your experience and recommendations.")
         showBackButton: true
@@ -38,9 +38,9 @@ Page {
                 width: 150
                 height: 150
                 radius: 75
-                color: storageService.userIsMale ? "#2D2D2D" : "#1A1A1A"
+                color: storageService.userIsMale ? StyleConstants.surfaceGray : StyleConstants.cardBackground
                 border.width: storageService.userIsMale ? 0 : 1
-                border.color: "#2D2D2D"
+                border.color: StyleConstants.surfaceGray
                 Column {
                     anchors.centerIn: parent
                     spacing: 12
@@ -67,9 +67,9 @@ Page {
                 width: 150
                 height: 150
                 radius: 75
-                color: !storageService.userIsMale ? StyleConstants.accent : "#1A1A1A"
+                color: !storageService.userIsMale ? StyleConstants.accent : StyleConstants.cardBackground
                 border.width: !storageService.userIsMale ? 0 : 1
-                border.color: "#2D2D2D"
+                border.color: StyleConstants.surfaceGray
                 Column {
                     anchors.centerIn: parent
                     spacing: 12

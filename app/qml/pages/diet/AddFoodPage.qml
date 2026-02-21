@@ -7,9 +7,13 @@ Page {
     id: root
     title: qsTr("添加食物")
     property Item stackView
+    property int presetMealType: 0  // 0=breakfast, 1=lunch, 2=dinner, 3=snack
     background: Rectangle { color: StyleConstants.background }
 
-    Component.onCompleted: storageService.loadFoods()
+    Component.onCompleted: {
+        storageService.loadFoods()
+        mealTimeRow.selectedIndex = Math.min(presetMealType, 3)
+    }
 
     ColumnLayout {
         anchors.fill: parent
@@ -19,7 +23,10 @@ Page {
         RowLayout {
             Layout.fillWidth: true
             Button {
-                text: "←"
+                icon.source: StyleConstants.iconArrowLeftPath
+                icon.width: 24
+                icon.height: 24
+                display: AbstractButton.IconOnly
                 flat: true
                 onClicked: stackView.pop()
             }
@@ -114,7 +121,7 @@ Page {
                         radius: StyleConstants.radiusSmall
                     }
                     onClicked: {
-                        if (storageService.addLogEntry(model.foodId, amountSpin.value))
+                        if (storageService.addLogEntry(model.foodId, amountSpin.value, mealTimeRow.selectedIndex))
                             stackView.pop()
                     }
                 }

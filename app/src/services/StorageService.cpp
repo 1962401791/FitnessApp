@@ -83,6 +83,14 @@ bool StorageService::createSchema()
     if (!q.exec("CREATE INDEX IF NOT EXISTS idx_daily_log_date ON daily_log(log_date)"))
         return false;
 
+    // Migration: add meal_type if missing (0=breakfast, 1=lunch, 2=dinner, 3=snack)
+    QSqlQuery checkCol(m_db);
+    if (checkCol.exec("SELECT COUNT(*) FROM pragma_table_info('daily_log') WHERE name='meal_type'")
+        && checkCol.next() && checkCol.value(0).toInt() == 0) {
+        if (!q.exec("ALTER TABLE daily_log ADD COLUMN meal_type INTEGER NOT NULL DEFAULT 0"))
+            return false;
+    }
+
     QSqlQuery check(m_db);
     if (check.exec("SELECT COUNT(*) FROM foods") && check.next() && check.value(0).toInt() == 0)
         return seedDefaultFoods();
@@ -178,25 +186,27 @@ void StorageService::loadTodayLog()
     m_dailyLogModel.clear();
     QDate today = QDate::currentDate();
     QSqlQuery q(m_db);
-    q.prepare("SELECT id, food_id, food_name, amount_g, protein_g, carbs_g, fat_g, kcal, logged_at FROM daily_log WHERE log_date = :d ORDER BY id");
+    q.prepare("SELECT id, food_id, food_name, amount_g, protein_g, carbs_g, fat_g, kcal, logged_at, meal_type FROM daily_log WHERE log_date = :d ORDER BY meal_type, id");
     q.bindValue(":d", today.toString(Qt::ISODate));
     if (!q.exec())
         return;
     while (q.next()) {
+        int mealType = qBound(0, q.value(9).toInt(), 3);
         auto *entry = new DailyLogEntry(this);
         entry->setData(
             q.value(0).toInt(), q.value(1).toInt(), q.value(2).toString(),
             q.value(3).toDouble(),
             q.value(4).toDouble(), q.value(5).toDouble(), q.value(6).toDouble(), q.value(7).toDouble(),
-            q.value(8).toString()
+            q.value(8).toString(), mealType
         );
         m_dailyLogModel.append(entry);
     }
 }
 
-bool StorageService::addLogEntry(int foodId, double amountG)
+bool StorageService::addLogEntry(int foodId, double amountG, int mealType)
 {
     if (amountG <= 0) return false;
+    mealType = qBound(0, mealType, 3);
     QSqlQuery q(m_db);
     q.prepare("SELECT name, protein_per100g, carbs_per100g, fat_per100g, kcal_per100g FROM foods WHERE id = :id");
     q.bindValue(":id", foodId);
@@ -206,8 +216,8 @@ bool StorageService::addLogEntry(int foodId, double amountG)
            f100 = q.value(3).toDouble(), k100 = q.value(4).toDouble();
     NutritionResult r = NutritionCalculator::compute(p100, c100, f100, k100, amountG);
     QString loggedAt = QDateTime::currentDateTime().toString(Qt::ISODate);
-    q.prepare("INSERT INTO daily_log (log_date, food_id, food_name, amount_g, protein_g, carbs_g, fat_g, kcal, logged_at) "
-              "VALUES (:d, :fid, :fname, :amt, :p, :c, :f, :k, :at)");
+    q.prepare("INSERT INTO daily_log (log_date, food_id, food_name, amount_g, protein_g, carbs_g, fat_g, kcal, logged_at, meal_type) "
+              "VALUES (:d, :fid, :fname, :amt, :p, :c, :f, :k, :at, :mt)");
     q.bindValue(":d", QDate::currentDate().toString(Qt::ISODate));
     q.bindValue(":fid", foodId);
     q.bindValue(":fname", name);
@@ -217,10 +227,11 @@ bool StorageService::addLogEntry(int foodId, double amountG)
     q.bindValue(":f", r.fatG);
     q.bindValue(":k", r.kcal);
     q.bindValue(":at", loggedAt);
+    q.bindValue(":mt", mealType);
     if (!q.exec()) return false;
     int newId = q.lastInsertId().toInt();
     auto *entry = new DailyLogEntry(this);
-    entry->setData(newId, foodId, name, amountG, r.proteinG, r.carbsG, r.fatG, r.kcal, loggedAt);
+    entry->setData(newId, foodId, name, amountG, r.proteinG, r.carbsG, r.fatG, r.kcal, loggedAt, mealType);
     m_dailyLogModel.append(entry);
     return true;
 }

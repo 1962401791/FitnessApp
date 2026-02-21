@@ -17,7 +17,7 @@ Page {
     property bool useKg: true
     property double selectedWeightKg: storageService.userWeightKg > 0 ? storageService.userWeightKg : 75
 
-    background: Rectangle { color: "#000000" }
+    background: Rectangle { color: StyleConstants.backgroundSecondary }
 
     Component.onCompleted: {
         if (storageService.userWeightKg <= 0)
@@ -27,7 +27,7 @@ Page {
 
     SetupStepLayout {
         anchors.fill: parent
-        anchors.margins: 20
+        anchors.margins: StyleConstants.spacingPage
         stepTitle: qsTr("What Is Your Weight?")
         stepSubtitle: qsTr("We use this to calculate your calorie and macro goals.")
         showBackButton: true
@@ -53,12 +53,12 @@ Page {
                 Rectangle {
                     width: 70
                     height: 36
-                    radius: 18
-                    color: root.useKg ? StyleConstants.accent : "#2D2D2D"
+                    radius: StyleConstants.radiusUnitToggle
+                    color: root.useKg ? StyleConstants.accent : StyleConstants.surfaceGray
                     Label {
                         anchors.centerIn: parent
                         text: qsTr("KG")
-                        font.pixelSize: 13
+                        font.pixelSize: StyleConstants.fontSizeSmall
                         font.bold: true
                         color: root.useKg ? StyleConstants.background : StyleConstants.textMuted
                     }
@@ -70,12 +70,12 @@ Page {
                 Rectangle {
                     width: 70
                     height: 36
-                    radius: 18
-                    color: !root.useKg ? StyleConstants.accent : "#2D2D2D"
+                    radius: StyleConstants.radiusUnitToggle
+                    color: !root.useKg ? StyleConstants.accent : StyleConstants.surfaceGray
                     Label {
                         anchors.centerIn: parent
                         text: qsTr("LB")
-                        font.pixelSize: 13
+                        font.pixelSize: StyleConstants.fontSizeSmall
                         font.bold: true
                         color: !root.useKg ? StyleConstants.background : StyleConstants.textMuted
                     }
@@ -139,9 +139,9 @@ Page {
                             text: value
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
-                            font.pixelSize: value === Math.round(weightPicker.unitValue) ? 20 : 16
+                            font.pixelSize: value === Math.round(weightPicker.unitValue) ? StyleConstants.fontSizeTitle : StyleConstants.fontSizeBody
                             font.bold: value === Math.round(weightPicker.unitValue)
-                            color: value === Math.round(weightPicker.unitValue) ? "#FFFFFF" : "#4B4B4B"
+                            color: value === Math.round(weightPicker.unitValue) ? StyleConstants.textPrimary : StyleConstants.textMuted
                         }
                     }
                 }
@@ -180,7 +180,7 @@ Page {
                             width: 2
                             height: value % 5 === 0 ? 18 : 10
                             radius: 1
-                            color: "#FFFFFF"
+                            color: StyleConstants.textPrimary
                             opacity: value % 5 === 0 ? 0.8 : 0.5
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.verticalCenter: parent.verticalCenter
@@ -246,13 +246,13 @@ Page {
                     text: root.useKg
                         ? root.selectedWeightKg.toFixed(0)
                         : Math.round(root.selectedWeightKg * 2.205).toString()
-                    font.pixelSize: 48
+                    font.pixelSize: StyleConstants.fontSizeValueDisplay
                     font.bold: true
                     color: StyleConstants.textPrimary
                 }
                 Label {
                     text: root.useKg ? qsTr("kg") : qsTr("lb")
-                    font.pixelSize: 18
+                    font.pixelSize: StyleConstants.fontSizeBody
                     font.bold: true
                     color: StyleConstants.textMuted
                     anchors.verticalCenter: parent.verticalCenter

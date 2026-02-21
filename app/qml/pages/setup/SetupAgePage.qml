@@ -16,7 +16,7 @@ Page {
 
     property int selectedAge: storageService.userAge > 0 ? storageService.userAge : 28
 
-    background: Rectangle { color: "#000000" }
+    background: Rectangle { color: StyleConstants.backgroundSecondary }
 
     Component.onCompleted: {
         if (storageService.userAge <= 0)
@@ -26,7 +26,7 @@ Page {
 
     SetupStepLayout {
         anchors.fill: parent
-        anchors.margins: 20
+        anchors.margins: StyleConstants.spacingPage
         stepTitle: qsTr("How Old Are You?")
         stepSubtitle: qsTr("Your age helps us calculate your daily calorie needs.")
         showBackButton: true
@@ -48,7 +48,7 @@ Page {
 
             Label {
                 text: selectedAge.toString()
-                font.pixelSize: 64
+                font.pixelSize: StyleConstants.fontSizeAgeDisplay
                 font.bold: true
                 color: StyleConstants.textPrimary
                 Layout.alignment: Qt.AlignHCenter
@@ -141,9 +141,9 @@ Page {
                             rightPadding: 0
                             lineHeight: parent.height
                             lineHeightMode: Text.FixedHeight
-                            font.pixelSize: value === root.selectedAge ? 20 : 16
+                            font.pixelSize: value === root.selectedAge ? StyleConstants.fontSizeTitle : StyleConstants.fontSizeBody
                             font.bold: value === root.selectedAge
-                            color: value === root.selectedAge ? "#FFFFFF" : "#2D2D2D"
+                            color: value === root.selectedAge ? StyleConstants.textPrimary : StyleConstants.textMuted
                         }
                     }
 
@@ -155,7 +155,7 @@ Page {
                     width: 2
                     height: ageTrack.height - 16
                     radius: 1
-                    color: "#FFFFFF"
+                    color: StyleConstants.textPrimary
                     opacity: 0.7
                     x: ageTrack.x + (ageTrack.width - width) / 2
                     y: ageTrack.y + 8

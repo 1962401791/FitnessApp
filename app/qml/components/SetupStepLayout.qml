@@ -34,8 +34,8 @@ Item {
             Item {
                 anchors.top: parent.top
                 anchors.left: parent.left
-                anchors.topMargin: 16
-                anchors.leftMargin: 16
+                anchors.topMargin: StyleConstants.spacingMedium
+                anchors.leftMargin: StyleConstants.spacingMedium
                 width: 40
                 height: 40
                 visible: root.showBackButton
@@ -47,12 +47,12 @@ Item {
                     radius: 20
                     color: "transparent"
                     border.width: 0
-                    
-                    Text {
-                        text: "\u2190"
-                        font.pixelSize: 24
-                        color: StyleConstants.textPrimary
+
+                    Icon {
                         anchors.centerIn: parent
+                        width: 24
+                        height: 24
+                        iconSource: StyleConstants.iconArrowLeftPath
                     }
                 }
                 
@@ -65,13 +65,13 @@ Item {
         
         ColumnLayout {
             Layout.fillWidth: true
-            Layout.leftMargin: 32
-            Layout.rightMargin: 32
-            spacing: 8
+            Layout.leftMargin: StyleConstants.spacingLayout
+            Layout.rightMargin: StyleConstants.spacingLayout
+            spacing: StyleConstants.spacingSmall
             
             Label {
                 text: root.stepTitle
-                font.pixelSize: 20
+                font.pixelSize: StyleConstants.fontSizeHeader
                 font.bold: true
                 color: StyleConstants.textPrimary
                 wrapMode: Text.WordWrap
@@ -80,7 +80,7 @@ Item {
             }
             Label {
                 text: root.stepSubtitle
-                font.pixelSize: 12
+                font.pixelSize: StyleConstants.fontSizeXs
                 color: StyleConstants.textMuted
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
@@ -93,22 +93,22 @@ Item {
             id: contentArea
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.topMargin: 32
+            Layout.topMargin: StyleConstants.spacingLayout
         }
 
         Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 56
-            Layout.topMargin: 24
-            Layout.leftMargin: 32
-            Layout.rightMargin: 32
-            Layout.bottomMargin: 32
-            radius: 28
+            Layout.topMargin: StyleConstants.spacingLarge
+            Layout.leftMargin: StyleConstants.spacingLayout
+            Layout.rightMargin: StyleConstants.spacingLayout
+            Layout.bottomMargin: StyleConstants.spacingLayout
+            radius: StyleConstants.radiusXLarge
             color: root.canProceed ? StyleConstants.primary : StyleConstants.surfaceGray
             Label {
                 anchors.centerIn: parent
                 text: root.buttonText
-                font.pixelSize: 16
+                font.pixelSize: StyleConstants.fontSizeTitle
                 font.bold: true
                 color: StyleConstants.textOnPrimary
             }

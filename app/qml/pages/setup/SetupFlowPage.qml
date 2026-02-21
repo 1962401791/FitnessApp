@@ -53,14 +53,14 @@ Page {
 
     function stepComponent(stepIndex) {
         var steps = [
-            "qrc:/FitnessApp/qml/pages/SetupIntroPage.qml",
-            "qrc:/FitnessApp/qml/pages/SetupGenderPage.qml",
-            "qrc:/FitnessApp/qml/pages/SetupAgePage.qml",
-            "qrc:/FitnessApp/qml/pages/SetupWeightPage.qml",
-            "qrc:/FitnessApp/qml/pages/SetupHeightPage.qml",
-            "qrc:/FitnessApp/qml/pages/SetupGoalPage.qml",
-            "qrc:/FitnessApp/qml/pages/SetupActivityPage.qml",
-            "qrc:/FitnessApp/qml/pages/SetupProfilePage.qml"
+            "qrc:/FitnessApp/qml/pages/setup/SetupIntroPage.qml",
+            "qrc:/FitnessApp/qml/pages/setup/SetupGenderPage.qml",
+            "qrc:/FitnessApp/qml/pages/setup/SetupAgePage.qml",
+            "qrc:/FitnessApp/qml/pages/setup/SetupWeightPage.qml",
+            "qrc:/FitnessApp/qml/pages/setup/SetupHeightPage.qml",
+            "qrc:/FitnessApp/qml/pages/setup/SetupGoalPage.qml",
+            "qrc:/FitnessApp/qml/pages/setup/SetupActivityPage.qml",
+            "qrc:/FitnessApp/qml/pages/setup/SetupProfilePage.qml"
         ]
         return stepIndex >= 0 && stepIndex < steps.length ? steps[stepIndex] : null
     }
@@ -69,7 +69,7 @@ Page {
         if (!storageService.hasBasicInfo && storageService.userHeightCm <= 0) {
             storageService.userHeightCm = 170
         }
-        stackView.replace("qrc:/FitnessApp/qml/pages/HomePage.qml", { stackView: stackView })
+        stackView.replace("qrc:/FitnessApp/qml/pages/main/HomePage.qml", { stackView: stackView })
     }
 
     function pushInitialStep() {

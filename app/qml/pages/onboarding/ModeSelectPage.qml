@@ -65,9 +65,9 @@ Page {
             }
             onClicked: {
                 if (storageService.hasBasicInfo && 0) {
-                    stackView.replace("qrc:/FitnessApp/qml/pages/HomePage.qml", { stackView: stackView })
+                    stackView.replace("qrc:/FitnessApp/qml/pages/main/HomePage.qml", { stackView: stackView })
                 } else {
-                    stackView.push("qrc:/FitnessApp/qml/pages/SetupFlowPage.qml", {
+                    stackView.push("qrc:/FitnessApp/qml/pages/setup/SetupFlowPage.qml", {
                         stackView: stackView,
                         isGuestMode: true
                     })

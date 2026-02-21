@@ -124,7 +124,7 @@ Page {
                 if (isEditMode)
                     stackView.pop()
                 else
-                    stackView.replace("qrc:/FitnessApp/qml/pages/HomePage.qml", { stackView: stackView })
+                    stackView.replace("qrc:/FitnessApp/qml/pages/main/HomePage.qml", { stackView: stackView })
             }
         }
     }

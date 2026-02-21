@@ -17,7 +17,10 @@ Page {
         RowLayout {
             Layout.fillWidth: true
             Button {
-                text: "←"
+                icon.source: StyleConstants.iconArrowLeftPath
+                icon.width: 24
+                icon.height: 24
+                display: AbstractButton.IconOnly
                 flat: true
                 onClicked: stackView.pop()
             }
@@ -30,7 +33,7 @@ Page {
                 text: qsTr("添加")
                 flat: true
                 font.bold: true
-                onClicked: stackView.push("qrc:/FitnessApp/qml/pages/AddExercisePage.qml", { stackView: stackView })
+                onClicked: stackView.push("qrc:/FitnessApp/qml/pages/exercise/AddExercisePage.qml", { stackView: stackView })
             }
         }
 

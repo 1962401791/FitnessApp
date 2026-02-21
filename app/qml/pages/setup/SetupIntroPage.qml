@@ -14,11 +14,11 @@ Page {
     property int totalSteps: 4
     property bool isGuestMode: true
 
-    background: Rectangle { color: "#000000" }
+    background: Rectangle { color: StyleConstants.backgroundSecondary }
 
     SetupStepLayout {
         anchors.fill: parent
-        anchors.margins: 20
+        anchors.margins: StyleConstants.spacingPage
         stepTitle: qsTr("Set Up")
         stepSubtitle: ""
         showBackButton: false
@@ -37,8 +37,8 @@ Page {
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 240
-                Layout.leftMargin: 32
-                Layout.rightMargin: 32
+                Layout.leftMargin: StyleConstants.spacingLayout
+                Layout.rightMargin: StyleConstants.spacingLayout
                 radius: 16
                 color: StyleConstants.surfaceGray
                 clip: true
@@ -51,25 +51,25 @@ Page {
 
             Label {
                 text: qsTr("Consistency Is The Key To Progress. Don't Give Up!")
-                font.pixelSize: 16
+                font.pixelSize: StyleConstants.fontSizeTitle
                 font.bold: true
                 color: StyleConstants.accent
                 horizontalAlignment: Text.AlignLeft
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
-                Layout.leftMargin: 32
-                Layout.rightMargin: 32
+                Layout.leftMargin: StyleConstants.spacingLayout
+                Layout.rightMargin: StyleConstants.spacingLayout
             }
 
             Label {
                 text: qsTr("Track your workouts, set goals, and build habits that last. Every small step counts.")
-                font.pixelSize: 12
+                font.pixelSize: StyleConstants.fontSizeXs
                 color: StyleConstants.textMuted
                 horizontalAlignment: Text.AlignLeft
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
-                Layout.leftMargin: 32
-                Layout.rightMargin: 32
+                Layout.leftMargin: StyleConstants.spacingLayout
+                Layout.rightMargin: StyleConstants.spacingLayout
             }
         }
     }

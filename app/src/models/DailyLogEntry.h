@@ -20,12 +20,14 @@ class DailyLogEntry : public QObject
     Q_PROPERTY(double fatG READ fatG CONSTANT)
     Q_PROPERTY(double kcal READ kcal CONSTANT)
     Q_PROPERTY(QString loggedAt READ loggedAt CONSTANT)
+    Q_PROPERTY(int mealType READ mealType CONSTANT)
+    Q_PROPERTY(QString mealTypeName READ mealTypeName CONSTANT)
 
 public:
     explicit DailyLogEntry(QObject *parent = nullptr);
     DailyLogEntry(int id, int foodId, const QString &foodName, double amountG,
                   double proteinG, double carbsG, double fatG, double kcal,
-                  const QString &loggedAt, QObject *parent = nullptr);
+                  const QString &loggedAt, int mealType, QObject *parent = nullptr);
 
     int id() const { return m_id; }
     int foodId() const { return m_foodId; }
@@ -36,10 +38,12 @@ public:
     double fatG() const { return m_fatG; }
     double kcal() const { return m_kcal; }
     QString loggedAt() const { return m_loggedAt; }
+    int mealType() const { return m_mealType; }
+    QString mealTypeName() const;
 
     void setData(int id, int foodId, const QString &foodName, double amountG,
                  double proteinG, double carbsG, double fatG, double kcal,
-                 const QString &loggedAt);
+                 const QString &loggedAt, int mealType = 0);
 
 private:
     int m_id = 0;
@@ -51,6 +55,7 @@ private:
     double m_fatG = 0;
     double m_kcal = 0;
     QString m_loggedAt;
+    int m_mealType = 0;  // 0=breakfast, 1=lunch, 2=dinner, 3=snack
 };
 
 #endif // DAILYLOGENTRY_H

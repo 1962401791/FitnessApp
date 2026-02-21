@@ -17,7 +17,7 @@ Page {
     property bool useCm: true
     property double selectedHeightCm: storageService.userHeightCm > 0 ? storageService.userHeightCm : 165
 
-    background: Rectangle { color: "#000000" }
+    background: Rectangle { color: StyleConstants.backgroundSecondary }
 
     Component.onCompleted: {
         if (storageService.userHeightCm <= 0)
@@ -27,7 +27,7 @@ Page {
 
     SetupStepLayout {
         anchors.fill: parent
-        anchors.margins: 20
+        anchors.margins: StyleConstants.spacingPage
         stepTitle: qsTr("What Is Your Height?")
         stepSubtitle: qsTr("Used to calculate BMI and daily calorie needs.")
         showBackButton: true
@@ -53,12 +53,12 @@ Page {
                 Rectangle {
                     width: 70
                     height: 36
-                    radius: 18
-                    color: root.useCm ? StyleConstants.accent : "#2D2D2D"
+                    radius: StyleConstants.radiusUnitToggle
+                    color: root.useCm ? StyleConstants.accent : StyleConstants.surfaceGray
                     Label {
                         anchors.centerIn: parent
                         text: qsTr("CM")
-                        font.pixelSize: 13
+                        font.pixelSize: StyleConstants.fontSizeSmall
                         font.bold: true
                         color: root.useCm ? StyleConstants.background : StyleConstants.textMuted
                     }
@@ -70,12 +70,12 @@ Page {
                 Rectangle {
                     width: 70
                     height: 36
-                    radius: 18
-                    color: !root.useCm ? StyleConstants.accent : "#2D2D2D"
+                    radius: StyleConstants.radiusUnitToggle
+                    color: !root.useCm ? StyleConstants.accent : StyleConstants.surfaceGray
                     Label {
                         anchors.centerIn: parent
                         text: qsTr("FT")
-                        font.pixelSize: 13
+                        font.pixelSize: StyleConstants.fontSizeSmall
                         font.bold: true
                         color: !root.useCm ? StyleConstants.background : StyleConstants.textMuted
                     }
@@ -94,7 +94,7 @@ Page {
                     text: root.useCm
                         ? root.selectedHeightCm.toFixed(0)
                         : Math.floor(root.selectedHeightCm / 30.48).toString()
-                    font.pixelSize: 48
+                    font.pixelSize: StyleConstants.fontSizeValueDisplay
                     font.bold: true
                     color: StyleConstants.textPrimary
                 }
@@ -102,7 +102,7 @@ Page {
                     text: root.useCm
                         ? qsTr("cm")
                         : qsTr("ft")
-                    font.pixelSize: 18
+                    font.pixelSize: StyleConstants.fontSizeBody
                     font.bold: true
                     color: StyleConstants.textMuted
                     anchors.verticalCenter: parent.verticalCenter
@@ -161,7 +161,7 @@ Page {
                             width: value % 5 === 0 ? 24 : 14
                             height: 2
                             radius: 1
-                            color: "#FFFFFF"
+                            color: StyleConstants.textPrimary
                             opacity: value % 5 === 0 ? 0.9 : 0.6
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.verticalCenter: parent.verticalCenter
@@ -198,9 +198,9 @@ Page {
                             text: value % 5 === 0 ? value.toString() : ""
                             horizontalAlignment: Text.AlignRight
                             verticalAlignment: Text.AlignVCenter
-                            font.pixelSize: value === Math.round(root.selectedHeightCm) ? 18 : 14
+                            font.pixelSize: value === Math.round(root.selectedHeightCm) ? StyleConstants.fontSizeTitle : StyleConstants.fontSizeBody
                             font.bold: value === Math.round(root.selectedHeightCm)
-                            color: value === Math.round(root.selectedHeightCm) ? "#FFFFFF" : "#8B8B8B"
+                            color: value === Math.round(root.selectedHeightCm) ? StyleConstants.textPrimary : StyleConstants.textMuted
                             rightPadding: 6
                         }
                     }

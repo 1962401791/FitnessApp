@@ -25,7 +25,10 @@ Page {
             RowLayout {
                 Layout.fillWidth: true
                 Button {
-                    text: "←"
+                    icon.source: StyleConstants.iconArrowLeftPath
+                    icon.width: 24
+                    icon.height: 24
+                    display: AbstractButton.IconOnly
                     flat: true
                     onClicked: stackView.pop()
                 }

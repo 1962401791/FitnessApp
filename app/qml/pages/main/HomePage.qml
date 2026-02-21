@@ -64,30 +64,30 @@ Page {
             CardButton {
                 title: qsTr("饮食记录")
                 subtitle: qsTr("记录三餐与加餐")
-                icon: "📋"
+                iconSource: StyleConstants.iconDietPath
                 Layout.fillWidth: true
-                onClicked: stackView.push("qrc:/FitnessApp/qml/pages/DietLogPage.qml", { stackView: stackView })
+                onClicked: stackView.push("qrc:/FitnessApp/qml/pages/diet/DietLogPage.qml", { stackView: stackView })
             }
             CardButton {
                 title: qsTr("运动记录")
                 subtitle: qsTr("添加运动消耗")
-                icon: "🏃"
+                iconSource: StyleConstants.iconExercisePath
                 Layout.fillWidth: true
-                onClicked: stackView.push("qrc:/FitnessApp/qml/pages/ExerciseLogPage.qml", { stackView: stackView })
+                onClicked: stackView.push("qrc:/FitnessApp/qml/pages/exercise/ExerciseLogPage.qml", { stackView: stackView })
             }
             CardButton {
                 title: qsTr("每日总结")
                 subtitle: qsTr("摄入与目标对比")
-                icon: "📊"
+                iconSource: StyleConstants.iconChartPath
                 Layout.fillWidth: true
-                onClicked: stackView.push("qrc:/FitnessApp/qml/pages/DailySummaryPage.qml", { stackView: stackView })
+                onClicked: stackView.push("qrc:/FitnessApp/qml/pages/main/DailySummaryPage.qml", { stackView: stackView })
             }
             CardButton {
                 title: qsTr("设置")
                 subtitle: qsTr("目标与基础信息")
-                icon: "⚙"
+                iconSource: StyleConstants.iconSettingsPath
                 Layout.fillWidth: true
-                onClicked: stackView.push("qrc:/FitnessApp/qml/pages/SettingsPage.qml", { stackView: stackView })
+                onClicked: stackView.push("qrc:/FitnessApp/qml/pages/main/SettingsPage.qml", { stackView: stackView })
             }
         }
     }

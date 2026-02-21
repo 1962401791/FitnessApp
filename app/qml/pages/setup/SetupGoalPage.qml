@@ -27,7 +27,7 @@ Page {
 
     SetupStepLayout {
         anchors.fill: parent
-        anchors.margins: 20
+        anchors.margins: StyleConstants.spacingPage
         stepTitle: qsTr("What Is Your Goal?")
         stepSubtitle: qsTr("Choose the goal that best fits your fitness journey.")
         showBackButton: true

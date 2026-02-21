@@ -19,7 +19,7 @@ Page {
 
     SetupStepLayout {
         anchors.fill: parent
-        anchors.margins: 20
+        anchors.margins: StyleConstants.spacingPage
         stepTitle: qsTr("Fill Your Profile")
         stepSubtitle: qsTr("Add your details to personalize your experience.")
         showBackButton: true

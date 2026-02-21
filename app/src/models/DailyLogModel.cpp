@@ -24,6 +24,8 @@ QVariant DailyLogModel::data(const QModelIndex &index, int role) const
     case FatGRole: return e->fatG();
     case KcalRole: return e->kcal();
     case LoggedAtRole: return e->loggedAt();
+    case MealTypeRole: return e->mealType();
+    case MealTypeNameRole: return e->mealTypeName();
     case EntryRole: return QVariant::fromValue(e);
     default: return QVariant();
     }
@@ -41,6 +43,8 @@ QHash<int, QByteArray> DailyLogModel::roleNames() const
         { FatGRole, "fatG" },
         { KcalRole, "kcal" },
         { LoggedAtRole, "loggedAt" },
+        { MealTypeRole, "mealType" },
+        { MealTypeNameRole, "mealTypeName" },
         { EntryRole, "entry" }
     };
 }

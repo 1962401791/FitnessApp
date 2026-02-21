@@ -71,10 +71,11 @@ public:
     /** Load today's log into dailyLogModel. */
     Q_INVOKABLE void loadTodayLog();
     /**
-     * Add a log entry for today for the given food and amount (g).
+     * Add a log entry for today for the given food, amount (g), and meal type.
+     * mealType: 0=breakfast, 1=lunch, 2=dinner, 3=snack.
      * Computes macros and stores; refreshes dailyLogModel.
      */
-    Q_INVOKABLE bool addLogEntry(int foodId, double amountG);
+    Q_INVOKABLE bool addLogEntry(int foodId, double amountG, int mealType = 0);
     /** Remove log entry by row index in current daily list. */
     Q_INVOKABLE bool removeLogEntryAt(int row);
 

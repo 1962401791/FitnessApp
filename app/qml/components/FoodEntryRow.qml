@@ -12,6 +12,7 @@ Rectangle {
     property real carbsG: 0
     property real fatG: 0
     property real kcal: 0
+    property string mealTypeName: ""
     signal remove()
 
     color: "transparent"
@@ -21,12 +22,22 @@ Rectangle {
         id: row
         anchors.fill: parent
         spacing: StyleConstants.spacingMedium
-        Label {
+        ColumnLayout {
             Layout.fillWidth: true
-            text: qsTr("%1 %2g").arg(root.foodName).arg(root.amountG.toFixed(0))
-            font.pixelSize: StyleConstants.fontSizeBody
-            elide: Text.ElideRight
-            color: StyleConstants.textPrimary
+            spacing: StyleConstants.spacingXs
+            Label {
+                text: qsTr("%1 %2g").arg(root.foodName).arg(root.amountG.toFixed(0))
+                font.pixelSize: StyleConstants.fontSizeBody
+                font.bold: true
+                elide: Text.ElideRight
+                color: StyleConstants.textPrimary
+            }
+            Label {
+                visible: root.mealTypeName.length > 0
+                text: root.mealTypeName.length > 0 ? qsTr("%1 · %2 kcal").arg(root.mealTypeName).arg(root.kcal.toFixed(0)) : ""
+                font.pixelSize: StyleConstants.fontSizeXs
+                color: StyleConstants.textMuted
+            }
         }
         Label {
             text: qsTr("P%1 C%2 F%3")

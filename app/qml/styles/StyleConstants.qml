@@ -9,6 +9,7 @@ QtObject {
     id: root
 
     readonly property color primary: "#896CFE"
+    readonly property color logoColor: "#B57EDC"
     readonly property color primaryLight: "#B3A0FF"
     readonly property color primaryPale: "#C6B8FF"
     readonly property color cardOverlay: "#896CFEF2"  // ~95% opacity for consistent overlay across onboarding backgrounds
@@ -32,11 +33,14 @@ QtObject {
     readonly property real radiusMedium: 16
     readonly property real radiusLarge: 24
     readonly property real radiusXLarge: 26
+    readonly property real radiusUnitToggle: 18
 
     readonly property real spacingXs: 4
     readonly property real spacingSmall: 8
     readonly property real spacingMedium: 16
     readonly property real spacingLarge: 24
+    readonly property real spacingPage: 20
+    readonly property real spacingLayout: 32
 
     readonly property int fontSizeXs: 12
     readonly property int fontSizeSmall: 13
@@ -44,6 +48,8 @@ QtObject {
     readonly property int fontSizeTitle: 16
     readonly property int fontSizeHeader: 20
     readonly property int fontSizeDisplay: 24
+    readonly property int fontSizeValueDisplay: 48
+    readonly property int fontSizeAgeDisplay: 72
 
     readonly property string fontFamily: "Segoe UI"
     readonly property string fontFamilyFallback: "sans-serif"
@@ -63,6 +69,24 @@ QtObject {
     readonly property string onbIconUsersPath: "qrc:/FitnessApp/resources/images/onboarding/icon_users.svg"
     readonly property string setupIconMalePath: "qrc:/FitnessApp/resources/images/onboarding/icon_male.svg"
     readonly property string setupIconFemalePath: "qrc:/FitnessApp/resources/images/onboarding/icon_female.svg"
+
+    // Unified icon paths (resources/images/icons/)
+    readonly property string iconArrowLeftPath: "qrc:/FitnessApp/resources/images/icons/icon_arrow_left.svg"
+    readonly property string iconChevronRightPath: "qrc:/FitnessApp/resources/images/icons/icon_chevron_right.svg"
+    readonly property string iconChevronRightAccentPath: "qrc:/FitnessApp/resources/images/icons/icon_chevron_right_accent.svg"
+    readonly property string iconDietPath: "qrc:/FitnessApp/resources/images/icons/icon_diet.svg"
+    readonly property string iconExercisePath: "qrc:/FitnessApp/resources/images/icons/icon_exercise.svg"
+    readonly property string iconChartPath: "qrc:/FitnessApp/resources/images/icons/icon_chart.svg"
+    readonly property string iconSettingsPath: "qrc:/FitnessApp/resources/images/icons/icon_settings.svg"
+    // Macronutrient icons for diet summary
+    readonly property string iconProteinPath: "qrc:/FitnessApp/resources/images/icons/icon_protein.svg"
+    readonly property string iconCarbsPath: "qrc:/FitnessApp/resources/images/icons/icon_carbs.svg"
+    readonly property string iconFatPath: "qrc:/FitnessApp/resources/images/icons/icon_fat.svg"
+    readonly property string iconCaloriePath: "qrc:/FitnessApp/resources/images/icons/icon_calorie.svg"
+    readonly property string iconBreakfastPath: "qrc:/FitnessApp/resources/images/icons/icon_breakfast.svg"
+    readonly property string iconLunchPath: "qrc:/FitnessApp/resources/images/icons/icon_lunch.svg"
+    readonly property string iconDinnerPath: "qrc:/FitnessApp/resources/images/icons/icon_dinner.svg"
+    readonly property string iconSnackPath: "qrc:/FitnessApp/resources/images/icons/icon_snack.svg"
 
     readonly property color primaryColor: primary
     readonly property color secondaryColor: surfaceGray

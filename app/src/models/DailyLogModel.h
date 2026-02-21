@@ -20,7 +20,8 @@ class DailyLogModel : public QAbstractListModel
 
 public:
     enum Role { IdRole = Qt::UserRole + 1, FoodIdRole, FoodNameRole, AmountGRole,
-                ProteinGRole, CarbsGRole, FatGRole, KcalRole, LoggedAtRole, EntryRole };
+                ProteinGRole, CarbsGRole, FatGRole, KcalRole, LoggedAtRole,
+                MealTypeRole, MealTypeNameRole, EntryRole };
 
     explicit DailyLogModel(QObject *parent = nullptr);
 

@@ -25,11 +25,11 @@ Page {
     }
 
     function goToModeSelect() {
-        stackView.replace("qrc:/FitnessApp/qml/pages/ModeSelectPage.qml", { stackView: stackView })
+        stackView.replace("qrc:/FitnessApp/qml/pages/onboarding/ModeSelectPage.qml", { stackView: stackView })
     }
 
     function goToOnboarding() {
-        stackView.replace("qrc:/FitnessApp/qml/pages/OnboardingPage.qml", { stackView: stackView })
+        stackView.replace("qrc:/FitnessApp/qml/pages/onboarding/OnboardingPage.qml", { stackView: stackView })
     }
 
     MouseArea {
@@ -80,25 +80,18 @@ Page {
             Label {
                 text: qsTr("欢迎使用")
                 font.pixelSize: 18
-                color: "#FFFFFF"
+                color: StyleConstants.textPrimary
                 Layout.alignment: Qt.AlignHCenter
             }
 
-            Rectangle {
+            Image {
                 Layout.alignment: Qt.AlignHCenter
+                source: StyleConstants.logoPath
+                sourceSize.width: 120
+                sourceSize.height: 120
                 width: 120
                 height: 120
-                radius: 24
-                color: StyleConstants.primary
-                Image {
-                    anchors.centerIn: parent
-                    source: StyleConstants.logoPathPng
-                    sourceSize.width: 80
-                    sourceSize.height: 80
-                    width: 80
-                    height: 80
-                    fillMode: Image.PreserveAspectFit
-                }
+                fillMode: Image.PreserveAspectFit
             }
 
             Label {
@@ -112,7 +105,7 @@ Page {
             Label {
                 text: qsTr("健康生活 · 健身融入每一天")
                 font.pixelSize: 14
-                color: "#FFFFFF"
+                color: StyleConstants.textPrimary
                 Layout.alignment: Qt.AlignHCenter
             }
         }

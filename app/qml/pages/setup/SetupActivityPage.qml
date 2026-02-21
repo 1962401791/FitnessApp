@@ -21,7 +21,7 @@ Page {
 
     SetupStepLayout {
         anchors.fill: parent
-        anchors.margins: 20
+        anchors.margins: StyleConstants.spacingPage
         stepTitle: qsTr("Physical Activity Level")
         stepSubtitle: qsTr("How active are you in your daily life?")
         showBackButton: true

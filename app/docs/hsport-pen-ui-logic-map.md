@@ -25,7 +25,17 @@
 
 ---
 
-## 2. 流程顺序（HSport.pen 帧从左到右）
+## 2. 流程顺序（HSport.pen 按操作逻辑链分组展示）
+
+画布已按操作逻辑链分段，每段前有 Note 引导标签：
+
+| 分组 | 引导标签 | 帧序列 |
+|------|----------|--------|
+| 1. 入口 | 1. 入口 Launch | 1-Launch |
+| 2. Onboarding | 2. Onboarding 引导 | 2-A → 2-B → 2-C |
+| 4. Set Up | 4. Set Up 设置 | 4-A → 4.1 → 4.2 → 4.3 → 4.4 → 4.5 → 4.6 → 4.7 |
+| 5. 主应用 Tab | 5. 主应用 Tab (首页/饮食/运动/健康) | 5-Home, 6-Diet, 7-Exercise, 8-Health |
+| 子页面 | 子页面 (从饮食→早餐/中餐/晚餐/加餐进入) | AddFood-早餐 |
 
 ```
 1-Launch → 2-A → 2-B → 2-C → 4-A → 4.1 → 4.2 → 4.3 → 4.4 → 4.5 → 4.6 → 4.7
@@ -55,7 +65,16 @@
 | Set Up 4.1–4.4 | 4.1–4.4 | SetupGender/Age/Weight/HeightPage | 游客仅前 4 步 |
 | Set Up 4.5–4.7 | 4.5–4.7 | SetupGoal/Activity/ProfilePage | 登录模式完整 8 步 |
 
-### 3.3 未设计（Figma 有、HSport.pen 无）
+### 3.3 底部导航 Tab 页（5/6/7/8）
+
+| HSport.pen 帧名 | 帧 ID | QML 实现 | 职责说明 |
+|----------------|-------|----------|----------|
+| 5-Home-LoggedIn | 7FMUL | HomePage.qml | 首页： greeting、推荐内容、本周挑战、文章入口；四大分类（饮食记录/运动计划/健康报告/训练计划） |
+| 6-Diet | AYws5 | DietLogPage.qml | **饮食单一真相源**：今日饮食、Macro 卡片（含阈值 减脂/正常/增加）、餐次入口、图表、食物列表 |
+| 7-Exercise | 8QfC7 | ExerciseLogPage.qml | 运动记录 |
+| 8-Health | G3BXs | HealthPage.qml（待实现） | **健康与规划**：本周快览、规划入口（训练计划/健康报告）、趋势与建议；**不重复展示饮食 kcal/营养素**，与 6-Diet 互补 |
+
+### 3.4 未设计（Figma 有、HSport.pen 无）
 
 | Figma 逻辑 | 说明 |
 |------------|------|
